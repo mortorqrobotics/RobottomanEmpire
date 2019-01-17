@@ -19,7 +19,7 @@ public class DriveTrain extends Subsystem {
 	private static final double DEADBAND_FORWARD = 0.15;
 	private static final double DEADBAND_TWIST = 0.05;
 
-	private int factor = -1; 
+	private int factor = 1; 
 
 	public boolean isPID = false;
 	
@@ -33,36 +33,21 @@ public class DriveTrain extends Subsystem {
 	public void setSpeed(double speed) {
 		leftGearbox.setSpeed(speed * factor);
 		rightGearbox.setSpeed(-speed * factor);
-		sendingForwardSpeed(speed);
 	}
 	
 	public void setSpeedPID(double speed) {
 		leftGearbox.setSpeedPID(speed * factor);
 		rightGearbox.setSpeedPID(-speed * factor);
-		sendingForwardSpeed(speed);
-	}
-	
-	public void sendingForwardSpeed(double speed) {
-//		speed of going forward and backward
-		SmartDashboard.putNumber("F Speed (Theoretical):", speed);
-	}
-	
-	public void sendingRotationalSpeed(double leftSpeed, double rightSpeed) {
-//		speed of turning left and right
-		SmartDashboard.putNumber("L Speed (Theoretical):", leftSpeed);
-		SmartDashboard.putNumber("R Speed (Theoretical):", rightSpeed);
 	}
 	
 	public void setSpeeds(double leftSpeed, double rightSpeed) {
 		leftGearbox.setSpeed(leftSpeed * factor);
 		rightGearbox.setSpeed(-rightSpeed * factor);
-		sendingRotationalSpeed(leftSpeed, rightSpeed);
 	}
 
 	public void setSpeedsPID(double leftSpeed, double rightSpeed) {
 		leftGearbox.setSpeedPID(leftSpeed * factor);
 		rightGearbox.setSpeedPID(-rightSpeed * factor);
-		sendingRotationalSpeed(leftSpeed, rightSpeed);
 	}
 	
 	public void stop() {
@@ -75,10 +60,9 @@ public class DriveTrain extends Subsystem {
 	
 	public void drive() {
 		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
-		double twist = Robot.driveStick.getRawAxis(Controls.TWIST);
+		double twist = -Robot.driveStick.getRawAxis(Controls.TWIST);
 		double throttle = Robot.driveStick.getRawAxis(Controls.THROTTLE);
 		double turnSpeed = Robot.driveStick.getRawAxis(Controls.TURN_SPEED);
-		
 		
 		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
 		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;

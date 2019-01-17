@@ -7,9 +7,16 @@
 
 package org.usfirst.frc.team1515.robot;
 
+import org.usfirst.frc.team1515.robot.commands.TogglePaneler;
+import org.usfirst.frc.team1515.robot.Controls;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+    
+    public OI() {
+        Controls.TOGGLE_PANELER.whenPressed(new TogglePaneler());
+    }
 }

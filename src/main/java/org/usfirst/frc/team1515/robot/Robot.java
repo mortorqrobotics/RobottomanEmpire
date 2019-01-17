@@ -33,11 +33,12 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		driveTrain = new DriveTrain(RobotMap.LEFT_TALON_IDS, RobotMap.RIGHT_TALON_IDS, RobotMap.RIGHT_ENCODER_PORTS, RobotMap.LEFT_ENCODER_PORTS);
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		paneler = new Paneler(RobotMap.PANELER_SOLENOID_PORTS);
 		shooter = new Shooter();
+
+		oi = new OI();
 	}
 
 	@Override
