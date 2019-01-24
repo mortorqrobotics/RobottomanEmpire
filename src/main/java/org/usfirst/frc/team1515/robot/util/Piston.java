@@ -5,7 +5,6 @@ import org.usfirst.frc.team1515.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-
 public class Piston {
 
 	private DoubleSolenoid solenoid;

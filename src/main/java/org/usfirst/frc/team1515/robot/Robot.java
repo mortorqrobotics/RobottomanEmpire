@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1515.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogOutput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,6 +31,7 @@ public class Robot extends TimedRobot {
 	public static Paneler paneler;
 	public static Shooter shooter;
 	public static Joystick driveStick;
+	public static Joystick manipStick;
 
 	public static OI oi;
 
@@ -35,8 +39,9 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		driveTrain = new DriveTrain(RobotMap.LEFT_TALON_IDS, RobotMap.RIGHT_TALON_IDS, RobotMap.RIGHT_ENCODER_PORTS, RobotMap.LEFT_ENCODER_PORTS);
 		driveStick = new Joystick(Controls.DRIVE_STICK);
+		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 		paneler = new Paneler(RobotMap.PANELER_SOLENOID_PORTS);
-		shooter = new Shooter();
+		shooter = new Shooter(RobotMap.INTAKE_TALON_IDS, RobotMap.SHOOTING_TALON_IDS, RobotMap.ELEVATION_TALON_IDS, RobotMap.ELEVATION_ENCODER_PORT, RobotMap.ELEVATION_ENCODER_MIN_MAX);
 
 		oi = new OI();
 	}
@@ -69,6 +74,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println(shooter.getAngle());
 	}
 
 	@Override

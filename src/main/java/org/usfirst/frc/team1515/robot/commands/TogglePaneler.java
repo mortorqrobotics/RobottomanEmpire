@@ -12,7 +12,7 @@ public class TogglePaneler extends Command {
 
     @Override
     protected void initialize() {
-        Robot.paneler.togglePiston();
+        Robot.paneler.toggle();
     }
 
     @Override

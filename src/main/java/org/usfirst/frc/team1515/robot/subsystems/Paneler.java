@@ -21,7 +21,7 @@ public class Paneler extends Subsystem {
         piston.close();
     }
 
-    public void togglePiston() {
+    public void toggle() {
         piston.toggle();
     }
 

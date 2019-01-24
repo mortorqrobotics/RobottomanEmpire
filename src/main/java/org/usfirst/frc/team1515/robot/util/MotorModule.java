@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class MotorModule {
 	
-	TalonSRX[] talons;
+	private TalonSRX[] talons;
 	
 	public MotorModule(int... talonPorts) {
 		talons = new TalonSRX[talonPorts.length];
