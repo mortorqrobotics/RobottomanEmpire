@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Controls {
 	
-	public static final int DRIVE_STICK = 0;
+	public static final int DRIVE_STICK = 2;
 	public static final int MANIPULATOR_STICK = 3;
 	
 	public static final int X_AXIS = 0;

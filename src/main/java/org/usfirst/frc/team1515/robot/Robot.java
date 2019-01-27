@@ -7,9 +7,19 @@
 
 package org.usfirst.frc.team1515.robot;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogOutput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -43,6 +53,7 @@ public class Robot extends TimedRobot {
 		paneler = new Paneler(RobotMap.PANELER_SOLENOID_PORTS);
 		shooter = new Shooter(RobotMap.INTAKE_TALON_IDS, RobotMap.SHOOTING_TALON_IDS, RobotMap.ELEVATION_TALON_IDS, RobotMap.ELEVATION_ENCODER_PORT, RobotMap.ELEVATION_ENCODER_MIN_MAX);
 
+		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
 	}
 
@@ -74,6 +85,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		shooter.elevate();
 		System.out.println(shooter.getAngle());
 	}
 
