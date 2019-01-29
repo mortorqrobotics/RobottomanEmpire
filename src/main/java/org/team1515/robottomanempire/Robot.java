@@ -42,11 +42,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		driveTrain = new DriveTrain(RobotMap.LEFT_TALON_IDS, RobotMap.RIGHT_TALON_IDS, RobotMap.RIGHT_ENCODER_PORTS, RobotMap.LEFT_ENCODER_PORTS);
+		driveTrain = new DriveTrain(RobotMap.LEFT_DRIVE_TALONS, RobotMap.RIGHT_DRIVE_TALONS, RobotMap.RIGHT_DRIVE_ENCODER, RobotMap.LEFT_DRIVE_ENCODER);
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
-		paneler = new Paneler(RobotMap.PANELER_SOLENOID_PORTS);
-		shooter = new Shooter(RobotMap.INTAKE_TALON_IDS, RobotMap.SHOOTING_TALON_IDS, RobotMap.ELEVATION_TALON_IDS, RobotMap.ELEVATION_ENCODER_PORT, RobotMap.ELEVATION_ENCODER_MIN_MAX);
+		paneler = new Paneler(RobotMap.PANELER_SOLENOID);
+		shooter = new Shooter(RobotMap.SHOOTING_TALONS, RobotMap.ARM_TALONS, RobotMap.ARM_ENCODER, RobotMap.ARM_ENCODER_MIN_MAX);
 
 		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();

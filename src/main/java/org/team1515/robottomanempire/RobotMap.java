@@ -11,20 +11,19 @@ import org.team1515.robottomanempire.util.Pair;
 
 public class RobotMap {
 
-	public static final int[] LEFT_TALON_IDS = {32, 34};
-	public static final int[] RIGHT_TALON_IDS = {31, 35};
+	public static final int[] LEFT_DRIVE_TALONS = {32, 34};
+	public static final int[] RIGHT_DRIVE_TALONS = {31, 35};
 
-	public static final Pair<Integer> LEFT_ENCODER_PORTS = new Pair<Integer>(0, 1);
-	public static final Pair<Integer> RIGHT_ENCODER_PORTS = new Pair<Integer>(2, 3);
+	public static final Pair<Integer> LEFT_DRIVE_ENCODER = new Pair<Integer>(0, 1);
+	public static final Pair<Integer> RIGHT_DRIVE_ENCODER = new Pair<Integer>(2, 3);
 
-	public static final int[] INTAKE_TALON_IDS = {};
-	public static final int[] SHOOTING_TALON_IDS = {32};
-	public static final int[] ELEVATION_TALON_IDS = {31, 33, 35};
+	public static final int[] SHOOTING_TALONS = {32};
+	public static final int[] ARM_TALONS = {2};
 
-	public static final int ELEVATION_ENCODER_PORT = 0;
-	public static final Pair<Double> ELEVATION_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
+	public static final int ARM_ENCODER = 0;
+	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
 
-	public static final Pair<Integer> PANELER_SOLENOID_PORTS = new Pair<Integer>(0, 1);
+	public static final Pair<Integer> PANELER_SOLENOID = new Pair<Integer>(0, 1);
 
 	public static final int PCM = 11;
 

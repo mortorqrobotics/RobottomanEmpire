@@ -4,36 +4,34 @@ import org.team1515.robottomanempire.util.AbsoluteEncoder;
 import org.team1515.robottomanempire.util.MotorModule;
 import org.team1515.robottomanempire.util.Pair;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
 
-    private MotorModule intakeMotors;
     private MotorModule shootingMotors;
-    private MotorModule elevationMotors;
+    private MotorModule armMotors;
 
-    private AbsoluteEncoder elevationEncoder;
-    private Encoder integratedEncoder;
+    private AbsoluteEncoder armEncoder;
 
-    private static final double ELEVATION_SPEED = 0.5;
+    private static final double ARM_SPEED = 1;
     private static final double SHOOTING_SPEED = 0.3;
 
-    public Shooter(int[] intakeTalonIds, int[] shootingTalonIds, int[] elevationTalonIds,
-            int elevationEncoderPort, Pair<Double> elevationEncoderMinMax) {
-        intakeMotors = new MotorModule(intakeTalonIds);
+    public Shooter(int[] shootingTalonIds, int[] armTalonIds,
+            int armEncoderPort, Pair<Double> armEncoderMinMax) {
         shootingMotors = new MotorModule(shootingTalonIds);
-        elevationMotors = new MotorModule(elevationTalonIds);
+        armMotors = new MotorModule(armTalonIds);
 
-        elevationEncoder = new AbsoluteEncoder(elevationEncoderPort, elevationEncoderMinMax);
+        armEncoder = new AbsoluteEncoder(armEncoderPort, armEncoderMinMax);
     }
 
     public double getAngle() {
-        return elevationEncoder.getAngle();
+        return armEncoder.getAngle();
     }
 
     public void elevate() {
-        elevationMotors.setSpeed(ELEVATION_SPEED);
+        armMotors.setSpeed(ARM_SPEED);
     }
 
     public void shoot() {
