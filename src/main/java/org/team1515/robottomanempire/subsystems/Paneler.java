@@ -13,12 +13,12 @@ public class Paneler extends Subsystem {
         piston = new Piston(solenoidPorts);
     }
 
-    public void extend() {
-       piston.open();
+    public void eject() {
+       piston.close();
     }
 
     public void retract() {
-        piston.close();
+        piston.open();
     }
 
     public void toggle() {

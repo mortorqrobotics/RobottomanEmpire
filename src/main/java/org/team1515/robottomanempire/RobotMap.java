@@ -17,11 +17,12 @@ public class RobotMap {
 	public static final Pair<Integer> LEFT_DRIVE_ENCODER = new Pair<Integer>(0, 1);
 	public static final Pair<Integer> RIGHT_DRIVE_ENCODER = new Pair<Integer>(2, 3);
 
-	public static final int[] SHOOTING_TALONS = {32};
-	public static final int[] ARM_TALONS = {2};
+	public static final int[] SHOOTER_TALONS = {6};
+	public static final int[] ARM_TALONS = {9, 8, 0};
 
 	public static final int ARM_ENCODER = 0;
 	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
+	public static final Pair<Integer> SHOOTER_ENCODER = new Pair<Integer>(4, 5);
 
 	public static final Pair<Integer> PANELER_SOLENOID = new Pair<Integer>(0, 1);
 

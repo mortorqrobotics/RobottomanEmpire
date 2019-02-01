@@ -14,6 +14,10 @@ public class AbsoluteEncoder {
         this.voltageMax = voltageMinMax.last;
     }
 
+    public void reset() {
+        encoder.resetAccumulator();
+    }
+
     // degrees
     public double getAngle() {
         return 360 * (encoder.getVoltage() - voltageMin) / (voltageMax - voltageMin);

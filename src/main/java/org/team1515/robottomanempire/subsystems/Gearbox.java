@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.team1515.robottomanempire.util.Pair;
+import org.team1515.robottomanempire.util.Triple;
 import org.team1515.robottomanempire.util.MotorModule;
 import org.team1515.robottomanempire.util.PIDController;
 
@@ -14,10 +15,7 @@ public class Gearbox extends Subsystem {
 	
 	private PIDController pidController;
 
-	final double K_P = 1.0;
-	final double K_I = 0.000;
-	final double K_D = 0.0;
-	
+	private Triple<Double> PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
 	final int MAX_ENCODER_RATE = 10;
 	
 	public Gearbox(int[] talonIds, Pair<Integer> encoderPorts) {
@@ -29,7 +27,7 @@ public class Gearbox extends Subsystem {
 		encoder.setSamplesToAverage(10);
 		encoder.reset();
 		
-		pidController = new PIDController(K_P, K_I, K_D, 0.9);
+		pidController = new PIDController(PID_CONSTANTS.first, PID_CONSTANTS.second, PID_CONSTANTS.third, 0.9);
 	}
 
 	public void setSpeedPID(double target) {

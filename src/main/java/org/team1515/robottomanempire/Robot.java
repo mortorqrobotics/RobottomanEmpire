@@ -9,11 +9,6 @@ package org.team1515.robottomanempire;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogOutput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -46,7 +41,7 @@ public class Robot extends TimedRobot {
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 		paneler = new Paneler(RobotMap.PANELER_SOLENOID);
-		shooter = new Shooter(RobotMap.SHOOTING_TALONS, RobotMap.ARM_TALONS, RobotMap.ARM_ENCODER, RobotMap.ARM_ENCODER_MIN_MAX);
+		shooter = new Shooter(RobotMap.SHOOTER_TALONS, RobotMap.ARM_TALONS, RobotMap.ARM_ENCODER, RobotMap.SHOOTER_ENCODER);
 
 		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
@@ -80,7 +75,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		shooter.elevate();
+		shooter.shoot();
+		System.out.println(shooter.getSpeed());
 	}
 
 	@Override
