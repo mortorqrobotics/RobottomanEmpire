@@ -14,17 +14,17 @@ public class SetArmAngle extends Command {
     public SetArmAngle(double target) {
         this.target = target;
         setTimeout(TIMEOUT);
-        requires(Robot.shooter);
+        requires(Robot.arm);
     }
 
     @Override
     protected void execute() {
-        Robot.shooter.setAngle(target);
+        Robot.arm.setAngle(target);
     }
 
     @Override
     protected boolean isFinished() {
-        double actual = Robot.shooter.getAngle();
+        double actual = Robot.arm.getAngle();
         boolean isWithinThreshold = Math.abs(target - actual) <= THRESHOLD;
         return isWithinThreshold || isTimedOut();
     }

@@ -1,17 +1,16 @@
 package org.team1515.robottomanempire.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.team1515.robottomanempire.util.Pair;
 import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
+import org.team1515.robottomanempire.RobotMap;
 import org.team1515.robottomanempire.commands.JoystickDrive;
 
 public class DriveTrain extends Subsystem {
 	
-	public Gearbox leftGearbox;
-	public Gearbox rightGearbox;
+	private PIDControllableMotor leftGearbox;
+	private PIDControllableMotor rightGearbox;
 	
 	private static final double ROTATE_SIDE = 1.0;
 	private static final double ROTATE_CORNER = 0.25;
@@ -23,11 +22,9 @@ public class DriveTrain extends Subsystem {
 
 	public boolean isPID = false;
 	
-	public DriveTrain(int[] leftTalonIds, int[] rightTalonIds, 
-		Pair<Integer> leftEncoderPorts, Pair<Integer> rightEncoderPorts
-	) {
-		leftGearbox = new Gearbox(leftTalonIds, leftEncoderPorts);
-		rightGearbox = new Gearbox(rightTalonIds, rightEncoderPorts);
+	public DriveTrain() {
+		leftGearbox = new PIDControllableMotor(RobotMap.LEFT_DRIVE_TALON_IDS, RobotMap.LEFT_DRIVE_ENCODER_ID, RobotMap.LEFT_DRIVE_PID_CONSTANTS);
+		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_ENCODER_ID, RobotMap.RIGHT_DRIVE_PID_CONSTANTS);
 	}
 	
 	public void setSpeed(double speed) {
@@ -60,17 +57,10 @@ public class DriveTrain extends Subsystem {
 	
 	public void drive() {
 		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
-		double twist = -Robot.driveStick.getRawAxis(Controls.TWIST);
-		double throttle = Robot.driveStick.getRawAxis(Controls.THROTTLE);
-		double turnSpeed = Robot.driveStick.getRawAxis(Controls.TURN_SPEED);
+		double twist = -Robot.driveStick.getRawAxis(Controls.X_AXIS);
 		
 		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
 		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
-		
-		turnSpeed = (1 + turnSpeed)/2;
-		throttle = (throttle - 1)/2;
-		forward *= throttle;
-		twist *= turnSpeed;
 		
 		double y = Math.abs(forward);
 		double x = Math.abs(twist);
@@ -90,9 +80,6 @@ public class DriveTrain extends Subsystem {
 			right = temp;
 		}
 		
-		SmartDashboard.putNumber("Left speed", left);
-		SmartDashboard.putNumber("Right Speed", right);
-		
 		if (isPID) {
 			setSpeedsPID(left, right);
 		} else {
@@ -101,15 +88,6 @@ public class DriveTrain extends Subsystem {
 		
 	}
 		
-	public double getDistance() {
-		return (Math.abs(leftGearbox.getDistance()) + Math.abs(rightGearbox.getDistance())) / 2;
-	}
-	
-	public void resetEncoders() {
-		leftGearbox.resetEncoder();
-		rightGearbox.resetEncoder();
-	}
-	
 	public void togglePID() {
 		isPID = !isPID;
 	}

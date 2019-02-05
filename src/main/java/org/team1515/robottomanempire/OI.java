@@ -7,6 +7,10 @@
 
 package org.team1515.robottomanempire;
 
+import org.team1515.robottomanempire.commands.Intake;
+import org.team1515.robottomanempire.commands.LowerArm;
+import org.team1515.robottomanempire.commands.RaiseArm;
+import org.team1515.robottomanempire.commands.Shoot;
 import org.team1515.robottomanempire.commands.TogglePaneler;
 import org.team1515.robottomanempire.Controls;
 
@@ -18,5 +22,11 @@ public class OI {
     
     public OI() {
         Controls.TOGGLE_PANELER.whenPressed(new TogglePaneler());
+
+        Controls.RAISE_ARM.whileHeld(new RaiseArm());
+        Controls.LOWER_ARM.whileHeld(new LowerArm());
+
+        Controls.SHOOT.whileHeld(new Shoot());
+        Controls.INTAKE.whileHeld(new Intake());
     }
 }

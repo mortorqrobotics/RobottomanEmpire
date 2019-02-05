@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
 import org.team1515.robottomanempire.subsystems.Paneler;
 import org.team1515.robottomanempire.subsystems.Shooter;
-import org.team1515.robottomanempire.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static Paneler paneler;
 	public static Shooter shooter;
+	public static Arm arm;
 	public static Joystick driveStick;
 	public static Joystick manipStick;
 
@@ -37,11 +38,12 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		driveTrain = new DriveTrain(RobotMap.LEFT_DRIVE_TALONS, RobotMap.RIGHT_DRIVE_TALONS, RobotMap.RIGHT_DRIVE_ENCODER, RobotMap.LEFT_DRIVE_ENCODER);
+		driveTrain = new DriveTrain();
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
-		paneler = new Paneler(RobotMap.PANELER_SOLENOID);
-		shooter = new Shooter(RobotMap.SHOOTER_TALONS, RobotMap.ARM_TALONS, RobotMap.ARM_ENCODER, RobotMap.SHOOTER_ENCODER);
+		paneler = new Paneler();
+		shooter = new Shooter();
+		arm = new Arm();
 
 		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
@@ -75,8 +77,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		shooter.shoot();
-		System.out.println(shooter.getSpeed());
 	}
 
 	@Override

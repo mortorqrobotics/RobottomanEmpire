@@ -8,24 +8,43 @@
 package org.team1515.robottomanempire;
 
 import org.team1515.robottomanempire.util.Pair;
+import org.team1515.robottomanempire.util.Triple;
 
 public class RobotMap {
 
-	public static final int[] LEFT_DRIVE_TALONS = {32, 34};
-	public static final int[] RIGHT_DRIVE_TALONS = {31, 35};
+	// IDENTIFICATIONS
 
-	public static final Pair<Integer> LEFT_DRIVE_ENCODER = new Pair<Integer>(0, 1);
-	public static final Pair<Integer> RIGHT_DRIVE_ENCODER = new Pair<Integer>(2, 3);
+	public static final int[] LEFT_DRIVE_TALON_IDS = {33, 35, 37};
+	public static final int[] RIGHT_DRIVE_TALON_IDS = {34, 36, 38};
 
-	public static final int[] SHOOTER_TALONS = {6};
-	public static final int[] ARM_TALONS = {9, 8, 0};
+	public static final int LEFT_DRIVE_ENCODER_ID = 33;
+	public static final int RIGHT_DRIVE_ENCODER_ID = 34; 
 
-	public static final int ARM_ENCODER = 0;
+	public static final int[] LEFT_SHOOTER_TALON_IDS = {33};
+	public static final int[] RIGHT_SHOOTER_TALON_IDS = {43};
+
+	public static final Pair<Integer> LEFT_SHOOTER_ENCODER_ID = new Pair<Integer>(0, 1);
+	public static final Pair<Integer> RIGHT_SHOOTER_ENCODER_ID = new Pair<Integer>(2, 3);
+
+	public static final int[] ARM_TALON_IDS = {39};
+
+	public static final int ARM_ENCODER_ID = 0;
 	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
-	public static final Pair<Integer> SHOOTER_ENCODER = new Pair<Integer>(4, 5);
 
-	public static final Pair<Integer> PANELER_SOLENOID = new Pair<Integer>(0, 1);
+	public static final Pair<Integer> PANELER_SOLENOID_ID = new Pair<Integer>(2, 3);
+	public static final int PCM_ID = 12;
 
-	public static final int PCM = 11;
+	// SPEEDS
+
+	public static final double SHOOTING_SPEED = 0.3;
+	public static final double INTAKE_SPEED = 0.3;
+	public static final double ARM_SPEED = 0.6;
+
+	// PID CONSTANTS
+
+    public static final Triple<Double> SHOOTER_PID_CONSTANTS = new Triple<Double>(0.4, 0.1, 0.0);
+    public static final Triple<Double> ARM_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
+    public static final Triple<Double> LEFT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
+    public static final Triple<Double> RIGHT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
 
 }
