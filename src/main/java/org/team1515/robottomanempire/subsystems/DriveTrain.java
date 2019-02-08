@@ -1,5 +1,6 @@
 package org.team1515.robottomanempire.subsystems;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.team1515.robottomanempire.Controls;
@@ -57,11 +58,18 @@ public class DriveTrain extends Subsystem {
 	
 	public void drive() {
 		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
-		double twist = -Robot.driveStick.getRawAxis(Controls.X_AXIS);
-		
+		double twist = Robot.driveStick.getRawAxis(Controls.X_AXIS);
+		double throttle = Robot.throttleStick.getRawAxis(Controls.THROTTLE_AXIS);
+		double turnSpeed = Robot.throttleStick.getRawAxis(Controls.TURNSPEED_AXIS);
+
 		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
 		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
 		
+		turnSpeed = (1 + turnSpeed)/2;
+		throttle = (throttle - 1)/2;
+		forward *= throttle;
+		twist *= -turnSpeed;	
+
 		double y = Math.abs(forward);
 		double x = Math.abs(twist);
 		double a = ROTATE_SIDE;

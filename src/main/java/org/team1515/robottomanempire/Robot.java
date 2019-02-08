@@ -11,6 +11,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.team1515.robottomanempire.subsystems.Arm;
@@ -31,22 +33,28 @@ public class Robot extends TimedRobot {
 	public static Paneler paneler;
 	public static Shooter shooter;
 	public static Arm arm;
+
 	public static Joystick driveStick;
+	public static Joystick throttleStick;
 	public static Joystick manipStick;
 
 	public static OI oi;
+	public static Timer timer;
 
 	@Override
 	public void robotInit() {
 		driveTrain = new DriveTrain();
-		driveStick = new Joystick(Controls.DRIVE_STICK);
-		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 		paneler = new Paneler();
 		shooter = new Shooter();
 		arm = new Arm();
 
+		driveStick = new Joystick(Controls.DRIVE_STICK);
+		throttleStick = new Joystick(Controls.THROTTLE_STICK);
+		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
+
 		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
 		oi = new OI();
+		timer = new Timer();
 	}
 
 	@Override
@@ -71,12 +79,20 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-
+		timer.start();
 	}
 
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		double timeInterval = timer.get() % RobotMap.RUMBLE_INTERVAL;
+		if (timeInterval > 0 && timeInterval < 1) {
+			driveStick.setRumble(RumbleType.kRightRumble, 1);
+			driveStick.setRumble(RumbleType.kLeftRumble, 1);
+		} else {
+			driveStick.setRumble(RumbleType.kRightRumble, 0);
+			driveStick.setRumble(RumbleType.kLeftRumble, 0);
+		}
 	}
 
 	@Override
