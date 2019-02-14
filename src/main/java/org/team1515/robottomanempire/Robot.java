@@ -93,6 +93,9 @@ public class Robot extends TimedRobot {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
+
+		shooter.shoot();
+		shooter.printPID();
 	}
 
 	@Override

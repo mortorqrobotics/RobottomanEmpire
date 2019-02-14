@@ -14,11 +14,11 @@ public class Paneler extends Subsystem {
     }
 
     public void eject() {
-       piston.close();
+       piston.retract();
     }
 
-    public void retract() {
-        piston.open();
+    public void grab() {
+        piston.extend();
     }
 
     public void toggle() {

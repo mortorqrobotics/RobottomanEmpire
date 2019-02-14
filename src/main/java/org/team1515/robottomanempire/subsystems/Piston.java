@@ -9,33 +9,33 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public class Piston {
 
 	private DoubleSolenoid solenoid;
-	private boolean isOpen;
+	private boolean isExtended;
 
     public Piston(Pair<Integer> solenoidPorts) {
         solenoid = new DoubleSolenoid(RobotMap.PCM_ID, solenoidPorts.first, solenoidPorts.last);
-        isOpen = false;
+        isExtended = false;
     }
 
-    public void open() {
+    public void extend() {
 		solenoid.set(Value.kForward);
-		isOpen = true;
+		isExtended = true;
 	}
 
-	public void close() {
+	public void retract() {
 		solenoid.set(Value.kReverse);
-		isOpen = false;
+		isExtended = false;
 	}
 	
 	public void toggle() {
-		if (isOpen) {
-			close();
+		if (isExtended) {
+			retract();
 		} else {
-			open();
+			extend();
 		}
 	}
 
     public boolean isOpen() {
-        return isOpen;
+        return isExtended;
     }
 
 }

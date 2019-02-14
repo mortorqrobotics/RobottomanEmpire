@@ -36,13 +36,14 @@ public class RobotMap {
 
 	// SPEEDS
 
-	public static final double SHOOTING_SPEED = 0.3;
+	public static final double SHOOTING_SPEED = -0.5;
 	public static final double INTAKE_SPEED = 0.3;
 	public static final double ARM_SPEED = 0.6;
 
 	// PID CONSTANTS
 
-    public static final Triple<Double> SHOOTER_PID_CONSTANTS = new Triple<Double>(0.4, 0.1, 0.0);
+    public static final Triple<Double> LEFT_SHOOTER_PID_CONSTANTS = new Triple<Double>(1.0, 0.1, 0.0);
+    public static final Triple<Double> RIGHT_SHOOTER_PID_CONSTANTS = new Triple<Double>(1.0, 0.1, 0.0);
     public static final Triple<Double> ARM_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
     public static final Triple<Double> LEFT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
 	public static final Triple<Double> RIGHT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);

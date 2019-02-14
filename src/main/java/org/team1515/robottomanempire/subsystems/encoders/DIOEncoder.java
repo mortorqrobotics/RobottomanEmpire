@@ -14,7 +14,7 @@ public class DIOEncoder implements GenericEncoder {
 
     @Override
     public double get() {
-        return encoder.getRate();
+        return encoder.getRate() / 100.0;
     }
 
     @Override

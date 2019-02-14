@@ -14,7 +14,8 @@ public class Controls {
 	public static final int THROTTLE_AXIS = 2;
 	public static final int TURNSPEED_AXIS = 6;
 	
-	public static final Button TOGGLE_PANELER = new JoystickButton(Robot.manipStick, 1);
+	public static final Button TOGGLE_PANELER = new JoystickButton(Robot.manipStick, -1);
+	public static final Button GRAB_PANEL = new JoystickButton(Robot.manipStick, 1);
 
 	public static final Button RAISE_ARM = new JoystickButton(Robot.driveStick, 1);
 	public static final Button LOWER_ARM = new JoystickButton(Robot.driveStick, 4);

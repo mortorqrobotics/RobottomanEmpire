@@ -56,4 +56,8 @@ public class PIDControllableMotor {
     encoder.reset();
   }
 
+  public void print(String identifier) {
+    pidController.printToSmartDashboard(identifier);
+  }
+
 }
