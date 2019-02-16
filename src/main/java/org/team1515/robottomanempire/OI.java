@@ -11,9 +11,12 @@ import org.team1515.robottomanempire.commands.GrabPanel;
 import org.team1515.robottomanempire.commands.Intake;
 import org.team1515.robottomanempire.commands.LowerArm;
 import org.team1515.robottomanempire.commands.RaiseArm;
+import org.team1515.robottomanempire.commands.ReduceSpeed;
 import org.team1515.robottomanempire.commands.ReleasePanel;
+import org.team1515.robottomanempire.commands.ReverseDrivetrain;
 import org.team1515.robottomanempire.commands.Shoot;
-import org.team1515.robottomanempire.commands.HoldPaneler;
+import org.team1515.robottomanempire.commands.TogglePaneler;
+import org.team1515.robottomanempire.commands.UnReduceSpeed;
 import org.team1515.robottomanempire.Controls;
 
 /**
@@ -23,7 +26,7 @@ import org.team1515.robottomanempire.Controls;
 public class OI {
     
     public OI() {
-        Controls.TOGGLE_PANELER.whileHeld(new HoldPaneler());
+        Controls.TOGGLE_PANELER.whenPressed(new TogglePaneler());
 
         Controls.GRAB_PANEL.whenPressed(new GrabPanel());
         Controls.GRAB_PANEL.whenReleased(new ReleasePanel());
@@ -33,5 +36,10 @@ public class OI {
 
         Controls.SHOOT.whileHeld(new Shoot());
         Controls.INTAKE.whileHeld(new Intake());
+
+        Controls.REVERSE_DRIVETRAIN.whenPressed(new ReverseDrivetrain());
+
+        Controls.REDUCE_SPEED.whenPressed(new ReduceSpeed());
+        Controls.REDUCE_SPEED.whenReleased(new UnReduceSpeed());
     }
 }

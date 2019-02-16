@@ -1,12 +1,9 @@
 package org.team1515.robottomanempire.subsystems;
 
 import org.team1515.robottomanempire.subsystems.MotorModule;
-import org.team1515.robottomanempire.subsystems.encoders.AbsoluteEncoder;
-import org.team1515.robottomanempire.subsystems.encoders.DIOEncoder;
 import org.team1515.robottomanempire.subsystems.encoders.GenericEncoder;
 import org.team1515.robottomanempire.subsystems.encoders.SRXMagneticEncoder;
 import org.team1515.robottomanempire.util.PIDController;
-import org.team1515.robottomanempire.util.Pair;
 import org.team1515.robottomanempire.util.Triple;
 
 public class PIDControllableMotor {
@@ -18,21 +15,16 @@ public class PIDControllableMotor {
   private PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants) {
     motors = new MotorModule(talonIds);
     pidController = new PIDController(pidConstants);
+
+  }
+  public PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, GenericEncoder encoder) {
+    this(talonIds, pidConstants);
+    this.encoder = encoder;
   }
 
-  public PIDControllableMotor(int[] talonIds, int encoderId, Pair<Double> voltageMinMax, Triple<Double> pidConstants) {
+  public PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, int encoderTalonId) {
     this(talonIds, pidConstants);
-    encoder = new AbsoluteEncoder(encoderId, voltageMinMax);
-  }
-
-  public PIDControllableMotor(int[] talonIds, int encoderId, Triple<Double> pidConstants) {
-    this(talonIds, pidConstants);
-    encoder = new SRXMagneticEncoder(motors.getTalonOfId(encoderId));
-  }
-
-  public PIDControllableMotor(int[] talonIds, Pair<Integer> encoderId, Triple<Double> pidConstants) {
-    this(talonIds, pidConstants);
-    encoder = new DIOEncoder(encoderId);
+    encoder = new SRXMagneticEncoder(motors.getTalonOfId(encoderTalonId));
   }
 
   public void setSpeed(double speed) {

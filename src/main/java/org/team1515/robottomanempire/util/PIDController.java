@@ -23,7 +23,7 @@ public class PIDController {
 	public PIDController(Triple<Double> pidConstants) {
 		this.K_P = pidConstants.first;
 		this.K_I = pidConstants.second;
-		this.K_D = pidConstants.third;
+		this.K_D = pidConstants.last;
 	}
 	
 	public double getOutput(double target, double actual) {

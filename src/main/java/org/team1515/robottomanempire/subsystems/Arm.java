@@ -1,6 +1,7 @@
 package org.team1515.robottomanempire.subsystems;
 
 import org.team1515.robottomanempire.RobotMap;
+import org.team1515.robottomanempire.subsystems.encoders.ArmEncoder;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,7 +12,7 @@ public class Arm extends Subsystem {
     private static final double SPEED = RobotMap.ARM_SPEED;
 
     public Arm() {
-        motors = new PIDControllableMotor(RobotMap.ARM_TALON_IDS, RobotMap.ARM_ENCODER_ID, RobotMap.ARM_ENCODER_MIN_MAX, RobotMap.ARM_PID_CONSTANTS);
+        motors = new PIDControllableMotor(RobotMap.ARM_TALON_IDS, RobotMap.ARM_PID_CONSTANTS, new ArmEncoder(RobotMap.ARM_ENCODER_ID));
         motors.resetEncoder();
     }
 

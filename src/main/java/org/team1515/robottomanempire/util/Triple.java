@@ -4,12 +4,12 @@ public class Triple<Type> {
 	
     public Type first;
     public Type second;
-	public Type third;
+	public Type last;
 	
-	public Triple(Type first, Type second, Type third) {
+	public Triple(Type first, Type second, Type last) {
 		this.first = first;
         this.second = second;
-        this.third = third;
+        this.last = last;
 	}
 
 }

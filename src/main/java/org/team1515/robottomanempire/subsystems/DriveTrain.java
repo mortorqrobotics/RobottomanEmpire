@@ -1,6 +1,5 @@
 package org.team1515.robottomanempire.subsystems;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.team1515.robottomanempire.Controls;
@@ -19,33 +18,37 @@ public class DriveTrain extends Subsystem {
 	private static final double DEADBAND_FORWARD = 0.15;
 	private static final double DEADBAND_TWIST = 0.05;
 
-	private int factor = 1; 
+	private int direction = 1; 
 
-	public boolean isPID = false;
+	private boolean isReduced = false; 
+	private static final double REDUCED_SPEED = 0.75;
+	private static final double REDUCED_TURNSPEED = 0.5;
+
+	private boolean isPID = false;
 	
 	public DriveTrain() {
-		leftGearbox = new PIDControllableMotor(RobotMap.LEFT_DRIVE_TALON_IDS, RobotMap.LEFT_DRIVE_ENCODER_ID, RobotMap.LEFT_DRIVE_PID_CONSTANTS);
-		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_ENCODER_ID, RobotMap.RIGHT_DRIVE_PID_CONSTANTS);
+		leftGearbox = new PIDControllableMotor(RobotMap.LEFT_DRIVE_TALON_IDS, RobotMap.LEFT_DRIVE_PID_CONSTANTS, RobotMap.LEFT_DRIVE_ENCODER_ID);
+		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_PID_CONSTANTS, RobotMap.RIGHT_DRIVE_ENCODER_ID);
 	}
 	
 	public void setSpeed(double speed) {
-		leftGearbox.setSpeed(speed * factor);
-		rightGearbox.setSpeed(-speed * factor);
+		leftGearbox.setSpeed(speed);
+		rightGearbox.setSpeed(-speed);
 	}
 	
 	public void setSpeedPID(double speed) {
-		leftGearbox.setSpeedPID(speed * factor);
-		rightGearbox.setSpeedPID(-speed * factor);
+		leftGearbox.setSpeedPID(speed);
+		rightGearbox.setSpeedPID(-speed);
 	}
 	
 	public void setSpeeds(double leftSpeed, double rightSpeed) {
-		leftGearbox.setSpeed(leftSpeed * factor);
-		rightGearbox.setSpeed(-rightSpeed * factor);
+		leftGearbox.setSpeed(leftSpeed);
+		rightGearbox.setSpeed(-rightSpeed);
 	}
 
 	public void setSpeedsPID(double leftSpeed, double rightSpeed) {
-		leftGearbox.setSpeedPID(leftSpeed * factor);
-		rightGearbox.setSpeedPID(-rightSpeed * factor);
+		leftGearbox.setSpeedPID(leftSpeed);
+		rightGearbox.setSpeedPID(-rightSpeed);
 	}
 	
 	public void stop() {
@@ -53,23 +56,29 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void reverse() {
-		factor *= -1;
+		direction *= -1;
 	}
-	
+
+	public void reduceSpeed() {
+		isReduced = true;
+	}
+
+	public void unReduceSpeed() {
+		isReduced = false;
+	}
+
 	public void drive() {
 		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
-		double twist = Robot.driveStick.getRawAxis(Controls.X_AXIS);
-		double throttle = Robot.throttleStick.getRawAxis(Controls.THROTTLE_AXIS);
-		double turnSpeed = Robot.throttleStick.getRawAxis(Controls.TURNSPEED_AXIS);
+		double twist = -Robot.driveStick.getRawAxis(Controls.X_AXIS);
 
 		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
 		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
-		
-		turnSpeed = (1 + turnSpeed)/2;
-		throttle = (throttle - 1)/2;
-		forward *= throttle;
-		twist *= -turnSpeed;	
 
+		if (isReduced) {
+			forward *= REDUCED_SPEED;
+			twist *= REDUCED_TURNSPEED;
+		}
+	
 		double y = Math.abs(forward);
 		double x = Math.abs(twist);
 		double a = ROTATE_SIDE;
@@ -87,6 +96,9 @@ public class DriveTrain extends Subsystem {
 			left = right;
 			right = temp;
 		}
+
+		left *= direction;
+		right *= direction;
 		
 		if (isPID) {
 			setSpeedsPID(left, right);
