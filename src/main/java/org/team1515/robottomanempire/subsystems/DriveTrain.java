@@ -18,7 +18,7 @@ public class DriveTrain extends Subsystem {
 	private static final double DEADBAND_FORWARD = 0.15;
 	private static final double DEADBAND_TWIST = 0.05;
 
-	private int direction = 1; 
+	private int direction = -1; 
 
 	private boolean isReduced = false; 
 	private static final double REDUCED_SPEED = 0.75;
@@ -73,6 +73,8 @@ public class DriveTrain extends Subsystem {
 
 		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
 		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
+
+		twist *= direction;
 
 		if (isReduced) {
 			forward *= REDUCED_SPEED;

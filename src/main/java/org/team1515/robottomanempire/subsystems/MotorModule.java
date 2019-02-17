@@ -28,7 +28,7 @@ public class MotorModule {
 			talon.set(ControlMode.PercentOutput, speed);
 		}
 	}
-	
+
 	public void stop() {
 		for (TalonSRX talon : talons) {
 			talon.set(ControlMode.PercentOutput, 0);

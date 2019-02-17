@@ -7,6 +7,7 @@
 
 package org.team1515.robottomanempire;
 
+import org.team1515.robottomanempire.commands.Climb;
 import org.team1515.robottomanempire.commands.GrabPanel;
 import org.team1515.robottomanempire.commands.Intake;
 import org.team1515.robottomanempire.commands.LowerArm;
@@ -15,6 +16,8 @@ import org.team1515.robottomanempire.commands.ReduceSpeed;
 import org.team1515.robottomanempire.commands.ReleasePanel;
 import org.team1515.robottomanempire.commands.ReverseDrivetrain;
 import org.team1515.robottomanempire.commands.Shoot;
+import org.team1515.robottomanempire.commands.SlidePanelerBackward;
+import org.team1515.robottomanempire.commands.SlidePanelerForward;
 import org.team1515.robottomanempire.commands.TogglePaneler;
 import org.team1515.robottomanempire.commands.UnReduceSpeed;
 import org.team1515.robottomanempire.Controls;
@@ -28,8 +31,11 @@ public class OI {
     public OI() {
         Controls.TOGGLE_PANELER.whenPressed(new TogglePaneler());
 
-        Controls.GRAB_PANEL.whenPressed(new GrabPanel());
-        Controls.GRAB_PANEL.whenReleased(new ReleasePanel());
+        Controls.RELEASE_PANEL.whenPressed(new ReleasePanel());
+        Controls.RELEASE_PANEL.whenReleased(new GrabPanel());
+
+        Controls.SLIDE_PANELER_FORWARD.whenPressed(new SlidePanelerForward());
+        Controls.SLIDE_PANELER_BACKWARD.whenPressed(new SlidePanelerBackward());
 
         Controls.RAISE_ARM.whileHeld(new RaiseArm());
         Controls.LOWER_ARM.whileHeld(new LowerArm());
@@ -41,5 +47,7 @@ public class OI {
 
         Controls.REDUCE_SPEED.whenPressed(new ReduceSpeed());
         Controls.REDUCE_SPEED.whenReleased(new UnReduceSpeed());
+
+        Controls.CLIMB.whenPressed(new Climb());
     }
 }

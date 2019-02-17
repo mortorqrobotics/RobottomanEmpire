@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.team1515.robottomanempire.subsystems.Arm;
+import org.team1515.robottomanempire.subsystems.Climber;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
 import org.team1515.robottomanempire.subsystems.Paneler;
 import org.team1515.robottomanempire.subsystems.Shooter;
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
 	public static Paneler paneler;
 	public static Shooter shooter;
 	public static Arm arm;
+	public static Climber climber;
 
 	public static Joystick driveStick;
 	public static Joystick throttleStick;
@@ -47,6 +49,7 @@ public class Robot extends TimedRobot {
 		paneler = new Paneler();
 		shooter = new Shooter();
 		arm = new Arm();
+		climber = new Climber();
 
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
