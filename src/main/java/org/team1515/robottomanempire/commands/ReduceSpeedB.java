@@ -4,15 +4,15 @@ import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Climb extends Command {
+public class ReduceSpeedB extends Command {
 
-    public Climb() {
-        requires(Robot.climber);
+    public ReduceSpeedB() {
+        requires(Robot.driveTrain);
     }
 
     @Override
     protected void execute() {
-        Robot.climber.climb();
+        Robot.driveTrain.reduceSpeedB();
     }
 
     @Override

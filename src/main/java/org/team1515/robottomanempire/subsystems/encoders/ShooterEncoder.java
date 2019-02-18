@@ -12,14 +12,15 @@ public class ShooterEncoder implements GenericEncoder {
     private static final double WHEEL_DIAMETER = RobotMap.SHOOTER_WHEEL_DIAMETER;
     private static final int TICKS_PER_REV = RobotMap.SHOOTER_ENCODER_TICKS_PER_REV;
 
-    public ShooterEncoder(Pair<Integer> ids) {
+    public ShooterEncoder(Pair<Integer> ids, boolean isReversed) {
         encoder = new Encoder(ids.first, ids.last);
+        encoder.setReverseDirection(isReversed);
+        // encoder.setDistancePerPulse(Math.PI * WHEEL_DIAMETER / TICKS_PER_REV);
     }
 
     @Override
     public double get() {
-        double circumference = Math.PI * WHEEL_DIAMETER;
-        return encoder.getRate() * circumference / TICKS_PER_REV;
+        return encoder.getRate() / 100;
     }
 
     @Override

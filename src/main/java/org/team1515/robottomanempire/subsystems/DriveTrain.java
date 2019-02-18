@@ -1,6 +1,7 @@
 package org.team1515.robottomanempire.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
@@ -20,8 +21,10 @@ public class DriveTrain extends Subsystem {
 
 	private int direction = -1; 
 
-	private boolean isReduced = false; 
-	private static final double REDUCED_SPEED = 0.75;
+	private boolean isReducedA = false; 
+	private boolean isReducedB = false; 
+	private static final double REDUCED_SPEED_A = 0.66;
+	private static final double REDUCED_SPEED_B = 0.33;
 	private static final double REDUCED_TURNSPEED = 0.5;
 
 	private boolean isPID = false;
@@ -59,12 +62,17 @@ public class DriveTrain extends Subsystem {
 		direction *= -1;
 	}
 
-	public void reduceSpeed() {
-		isReduced = true;
+	public void reduceSpeedA() {
+		isReducedA = true;
+	}
+
+	public void reduceSpeedB() {
+		isReducedB = true;
 	}
 
 	public void unReduceSpeed() {
-		isReduced = false;
+		isReducedA = false;
+		isReducedB = false;
 	}
 
 	public void drive() {
@@ -76,8 +84,11 @@ public class DriveTrain extends Subsystem {
 
 		twist *= direction;
 
-		if (isReduced) {
-			forward *= REDUCED_SPEED;
+		if (isReducedA) {
+			forward *= REDUCED_SPEED_A;
+			twist *= REDUCED_TURNSPEED;
+		} else if (isReducedB) {
+			forward *= REDUCED_SPEED_B;
 			twist *= REDUCED_TURNSPEED;
 		}
 	
@@ -107,6 +118,9 @@ public class DriveTrain extends Subsystem {
 		} else {
 			setSpeeds(left, right);
 		}
+
+		SmartDashboard.putNumber("left drive", leftGearbox.getEncoderMeasurement());
+		SmartDashboard.putNumber("right drive", rightGearbox.getEncoderMeasurement());
 		
 	}
 		

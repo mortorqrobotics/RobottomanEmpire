@@ -4,10 +4,10 @@ import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Shoot extends Command {
-    
-    public Shoot() {
-        requires(Robot.shooter);
+public class DriveClimber extends Command {
+
+    public DriveClimber() {
+        requires(Robot.climber);
     }
 
     @Override
@@ -17,14 +17,12 @@ public class Shoot extends Command {
 
     @Override
     protected void execute() {
-        Robot.shooter.shoot();
-        // Robot.timer.delay(0.5);   
-        // Robot.shooter.push();
+        Robot.climber.driveForward();
     }
 
     @Override
     protected void end() {
-        Robot.shooter.stop();
+        Robot.climber.stop();
     }
-
+    
 }

@@ -4,15 +4,15 @@ import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ReduceSpeed extends Command {
+public class ReduceSpeedA extends Command {
 
-    public ReduceSpeed() {
+    public ReduceSpeedA() {
         requires(Robot.driveTrain);
     }
 
     @Override
     protected void execute() {
-        Robot.driveTrain.reduceSpeed();
+        Robot.driveTrain.reduceSpeedA();
     }
 
     @Override
