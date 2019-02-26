@@ -1,4 +1,4 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.arm;
 
 import org.team1515.robottomanempire.Robot;
 
@@ -8,8 +8,8 @@ public class SetArmAngle extends Command {
 
     private double target;
 
-    private static final double THRESHOLD = 2.0;
-    private static final double TIMEOUT = 3; 
+    private static final double THRESHOLD = 10.0;
+    private static final double TIMEOUT = 100; 
 
     public SetArmAngle(double target) {
         this.target = target;
@@ -27,6 +27,11 @@ public class SetArmAngle extends Command {
         double actual = Robot.arm.getAngle();
         boolean isWithinThreshold = Math.abs(target - actual) <= THRESHOLD;
         return isWithinThreshold || isTimedOut();
+    }
+
+    @Override
+    protected void end() {
+        Robot.arm.hold();
     }
 
 }

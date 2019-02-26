@@ -1,28 +1,28 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.arm;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveClimber extends Command {
+public class RaiseArm extends Command {
 
-    public DriveClimber() {
-        requires(Robot.climber);
+    public RaiseArm() {
+        requires(Robot.arm);
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.isAtMaxHeight();
     }
 
     @Override
     protected void execute() {
-        Robot.climber.driveForward();
+        Robot.arm.raise();
     }
 
     @Override
     protected void end() {
-        Robot.climber.stop();
+        Robot.arm.hold();
     }
     
 }

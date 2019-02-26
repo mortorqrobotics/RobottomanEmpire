@@ -12,18 +12,26 @@ public class PIDControllableMotor {
   private GenericEncoder encoder;
   private PIDController pidController;
 
-  private PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants) {
+  private double maxSpeed;
+
+  private PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, double maxSpeed) {
     motors = new MotorModule(talonIds);
     pidController = new PIDController(pidConstants);
-
+    this.maxSpeed = maxSpeed;
   }
+
   public PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, GenericEncoder encoder) {
-    this(talonIds, pidConstants);
+    this(talonIds, pidConstants, 1.0);
+    this.encoder = encoder;
+  }
+
+  public PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, GenericEncoder encoder, double maxSpeed) {
+    this(talonIds, pidConstants, maxSpeed);
     this.encoder = encoder;
   }
 
   public PIDControllableMotor(int[] talonIds, Triple<Double> pidConstants, int encoderTalonId) {
-    this(talonIds, pidConstants);
+    this(talonIds, pidConstants, 1.0);
     encoder = new SRXMagneticEncoder(motors.getTalonOfId(encoderTalonId));
   }
 
@@ -33,6 +41,9 @@ public class PIDControllableMotor {
 
   public void setSpeedPID(double target) {
     double output = pidController.getOutput(target, getEncoderMeasurement());
+    if (Math.abs(output) > maxSpeed) {
+      output = Math.signum(output) * maxSpeed;
+    }
     setSpeed(output);
   }
 

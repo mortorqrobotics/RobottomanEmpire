@@ -1,4 +1,4 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.paneler;
 
 import org.team1515.robottomanempire.Robot;
 

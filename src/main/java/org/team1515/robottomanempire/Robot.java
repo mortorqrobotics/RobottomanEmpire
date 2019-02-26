@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.Climber;
@@ -67,6 +68,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("abs encoder", arm.getAngle());
 	}
 
 	@Override
@@ -95,7 +97,7 @@ public class Robot extends TimedRobot {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
-		// Robot.shooter.printPID();
+		shooter.shoot();
 	}
 
 	@Override

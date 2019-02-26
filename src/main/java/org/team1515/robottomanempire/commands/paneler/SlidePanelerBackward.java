@@ -1,18 +1,18 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.paneler;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ReverseDrivetrain extends Command {
+public class SlidePanelerBackward extends Command {
 
-    public ReverseDrivetrain() {
-        requires(Robot.driveTrain);
+    public SlidePanelerBackward() {
+       requires(Robot.paneler);
     }
 
     @Override
     protected void execute() {
-        Robot.driveTrain.reverse();
+        Robot.paneler.slideBackward();
     }
 
     @Override

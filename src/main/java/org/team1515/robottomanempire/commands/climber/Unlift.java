@@ -1,12 +1,12 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.climber;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RetractFrontClimber extends Command {
+public class Unlift extends Command {
 
-    public RetractFrontClimber() {
+    public Unlift() {
         requires(Robot.climber);
     }
 
@@ -17,7 +17,7 @@ public class RetractFrontClimber extends Command {
 
     @Override
     protected void execute() {
-        Robot.climber.retractFront();
+       Robot.climber.unlift(); 
     }
 
 }

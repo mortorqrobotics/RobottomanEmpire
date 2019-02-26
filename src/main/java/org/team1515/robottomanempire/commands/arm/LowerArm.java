@@ -1,13 +1,13 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.arm;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Intake extends Command {
-    
-    public Intake() {
-        requires(Robot.shooter);
+public class LowerArm extends Command {
+
+    public LowerArm() {
+        requires(Robot.arm);
     }
 
     @Override
@@ -17,12 +17,12 @@ public class Intake extends Command {
 
     @Override
     protected void execute() {
-        Robot.shooter.intake();
+        Robot.arm.lower();
     }
 
     @Override
     protected void end() {
-        Robot.shooter.stop();
+        Robot.arm.stop();
     }
 
 }

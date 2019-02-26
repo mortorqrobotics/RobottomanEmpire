@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
 import org.team1515.robottomanempire.RobotMap;
-import org.team1515.robottomanempire.commands.JoystickDrive;
+import org.team1515.robottomanempire.commands.drivetrain.JoystickDrive;
 
 public class DriveTrain extends Subsystem {
 	
@@ -126,6 +126,10 @@ public class DriveTrain extends Subsystem {
 		
 	public void togglePID() {
 		isPID = !isPID;
+	}
+
+	public double getPosition() {
+		return (rightGearbox.getEncoderMeasurement() + leftGearbox.getEncoderMeasurement()) / 2.0;
 	}
 
 	@Override

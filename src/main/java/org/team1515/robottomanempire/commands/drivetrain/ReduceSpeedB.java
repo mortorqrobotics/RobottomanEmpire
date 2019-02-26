@@ -1,18 +1,18 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.drivetrain;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SlidePanelerBackward extends Command {
+public class ReduceSpeedB extends Command {
 
-    public SlidePanelerBackward() {
-       requires(Robot.paneler);
+    public ReduceSpeedB() {
+        requires(Robot.driveTrain);
     }
 
     @Override
     protected void execute() {
-        Robot.paneler.slideBackward();
+        Robot.driveTrain.reduceSpeedB();
     }
 
     @Override

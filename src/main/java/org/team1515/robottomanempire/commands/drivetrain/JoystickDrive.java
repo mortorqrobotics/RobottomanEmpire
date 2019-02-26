@@ -1,23 +1,23 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.drivetrain;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ReduceSpeedB extends Command {
+public class JoystickDrive extends Command {
 
-    public ReduceSpeedB() {
+    public JoystickDrive() {
         requires(Robot.driveTrain);
     }
 
     @Override
     protected void execute() {
-        Robot.driveTrain.reduceSpeedB();
+        Robot.driveTrain.drive();    
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
 }

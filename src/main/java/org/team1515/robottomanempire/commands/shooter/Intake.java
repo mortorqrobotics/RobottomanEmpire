@@ -1,25 +1,23 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.shooter;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Shoot extends Command {
+public class Intake extends Command {
     
-    public Shoot() {
+    public Intake() {
         requires(Robot.shooter);
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.shooter.isBallIn();
     }
 
     @Override
     protected void execute() {
-        Robot.shooter.shoot();
-        // Robot.timer.delay(0.5);   
-        // Robot.shooter.push();
+        Robot.shooter.intake();
     }
 
     @Override

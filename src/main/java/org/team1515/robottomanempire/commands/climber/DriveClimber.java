@@ -1,13 +1,13 @@
-package org.team1515.robottomanempire.commands;
+package org.team1515.robottomanempire.commands.climber;
 
 import org.team1515.robottomanempire.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LowerArm extends Command {
+public class DriveClimber extends Command {
 
-    public LowerArm() {
-        requires(Robot.arm);
+    public DriveClimber() {
+        requires(Robot.climber);
     }
 
     @Override
@@ -17,12 +17,12 @@ public class LowerArm extends Command {
 
     @Override
     protected void execute() {
-        Robot.arm.lower();
+        Robot.climber.driveForward();
     }
 
     @Override
     protected void end() {
-        Robot.arm.stop();
+        Robot.climber.stop();
     }
- 
+    
 }

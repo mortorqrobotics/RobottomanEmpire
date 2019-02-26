@@ -7,24 +7,24 @@
 
 package org.team1515.robottomanempire;
 
-import org.team1515.robottomanempire.commands.DriveClimber;
-import org.team1515.robottomanempire.commands.GrabPanel;
-import org.team1515.robottomanempire.commands.Intake;
-import org.team1515.robottomanempire.commands.Lift;
-import org.team1515.robottomanempire.commands.LowerArm;
-import org.team1515.robottomanempire.commands.RaiseArm;
-import org.team1515.robottomanempire.commands.ReduceSpeedA;
-import org.team1515.robottomanempire.commands.ReduceSpeedB;
-import org.team1515.robottomanempire.commands.ReleasePanel;
-import org.team1515.robottomanempire.commands.RetractBackClimber;
-import org.team1515.robottomanempire.commands.RetractFrontClimber;
-import org.team1515.robottomanempire.commands.ReverseDrivetrain;
-import org.team1515.robottomanempire.commands.Shoot;
-import org.team1515.robottomanempire.commands.SlidePanelerBackward;
-import org.team1515.robottomanempire.commands.SlidePanelerForward;
-import org.team1515.robottomanempire.commands.TogglePaneler;
-import org.team1515.robottomanempire.commands.UnReduceSpeed;
-import org.team1515.robottomanempire.commands.Unlift;
+import org.team1515.robottomanempire.commands.climber.DriveClimber;
+import org.team1515.robottomanempire.commands.paneler.GrabPanel;
+import org.team1515.robottomanempire.commands.shooter.Intake;
+import org.team1515.robottomanempire.commands.climber.Lift;
+import org.team1515.robottomanempire.commands.ShootRocket;
+import org.team1515.robottomanempire.commands.arm.LowerArm;
+import org.team1515.robottomanempire.commands.arm.RaiseArm;
+import org.team1515.robottomanempire.commands.drivetrain.ReduceSpeedA;
+import org.team1515.robottomanempire.commands.drivetrain.ReduceSpeedB;
+import org.team1515.robottomanempire.commands.paneler.ReleasePanel;
+import org.team1515.robottomanempire.commands.climber.RetractBackClimber;
+import org.team1515.robottomanempire.commands.climber.RetractFrontClimber;
+import org.team1515.robottomanempire.commands.drivetrain.ReverseDrivetrain;
+import org.team1515.robottomanempire.commands.shooter.Shoot;
+import org.team1515.robottomanempire.commands.paneler.SlidePanelerBackward;
+import org.team1515.robottomanempire.commands.paneler.SlidePanelerForward;
+import org.team1515.robottomanempire.commands.drivetrain.UnReduceSpeed;
+import org.team1515.robottomanempire.commands.climber.Unlift;
 import org.team1515.robottomanempire.Controls;
 
 /**
@@ -34,7 +34,6 @@ import org.team1515.robottomanempire.Controls;
 public class OI {
     
     public OI() {
-        Controls.TOGGLE_PANELER.whenPressed(new TogglePaneler());
 
         Controls.RELEASE_PANEL.whenPressed(new ReleasePanel());
         Controls.RELEASE_PANEL.whenReleased(new GrabPanel());
@@ -61,6 +60,8 @@ public class OI {
         Controls.RETRACT_FRONT_CLIMBER.whenPressed(new RetractFrontClimber());
         Controls.RETRACT_BACK_CLIMBER.whenPressed(new RetractBackClimber());
         Controls.UNLIFT.whenPressed(new Unlift());
+
+        Controls.LIFT.whenPressed(new ShootRocket());
 
     }
 }
