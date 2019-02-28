@@ -81,6 +81,8 @@ public class RobotMap {
 	
 	public static final double MID_ROCKET_DIST = 28;
 	public static final double HIGH_ROCKET_DIST = 48;
+
+	public static final double ARM_DROP_HEIGHT = 38;
 	 
 	// MISC
 

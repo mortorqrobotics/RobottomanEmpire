@@ -22,7 +22,11 @@ public class RaiseArm extends Command {
 
     @Override
     protected void end() {
-        Robot.arm.hold();
+        if (Robot.arm.isAtMaxHeight()) {
+            Robot.arm.stop();
+        } else {
+            Robot.arm.hold();
+        }
     }
     
 }

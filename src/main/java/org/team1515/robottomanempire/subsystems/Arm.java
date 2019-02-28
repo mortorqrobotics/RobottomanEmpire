@@ -16,6 +16,8 @@ public class Arm extends Subsystem {
     private static final double LOWER_SPEED = RobotMap.ARM_LOWER_SPEED;
     private static final double HOLD_SPEED = RobotMap.ARM_HOLD_SPEED;
 
+    private static final double DROP_HEIGHT = RobotMap.ARM_DROP_HEIGHT;
+
     public Arm() {
         motors = new PIDControllableMotor(RobotMap.ARM_TALON_IDS, RobotMap.ARM_PID_CONSTANTS, new ArmEncoder(RobotMap.ARM_ENCODER_ID), 0.5);
         limitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH_ID);
@@ -55,7 +57,7 @@ public class Arm extends Subsystem {
     }
 
     public boolean isAtDropHeight() {
-        return getAngle() > 38;
+        return getAngle() > DROP_HEIGHT;
     }
 
     public void printPID() {
