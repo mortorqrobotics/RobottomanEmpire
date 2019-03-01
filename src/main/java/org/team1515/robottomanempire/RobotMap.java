@@ -26,8 +26,8 @@ public class RobotMap {
 	public static final int[] TOP_SHOOTER_TALON_IDS = {34};
 	public static final int[] BOTTOM_SHOOTER_TALON_IDS = {32};
 
-	public static final Pair<Integer> TOP_SHOOTER_ENCODER_ID = new Pair<Integer>(0, 1);
-	public static final Pair<Integer> BOTTOM_SHOOTER_ENCODER_ID = new Pair<Integer>(2, 3);
+	public static final Pair<Integer> TOP_SHOOTER_ENCODER_ID = new Pair<Integer>(4, 5);
+	public static final Pair<Integer> BOTTOM_SHOOTER_ENCODER_ID = new Pair<Integer>(6, 7);
 
 	public static final boolean TOP_SHOOTER_ENCODER_REVERSED = true;
 	public static final boolean BOTTOM_SHOOTER_ENCODER_REVERSED = false;
@@ -42,8 +42,8 @@ public class RobotMap {
 
 	public static final int[] CLIMBER_TALON_IDS = {35};
 
-	public static final int SHOOTER_LIMIT_SWITCH_ID = 4;
-	public static final int ARM_LIMIT_SWITCH_ID = 5;
+	public static final int ARM_LIMIT_SWITCH_ID = 0;
+	public static final int SHOOTER_LIMIT_SWITCH_ID = 1;
 
 	// PNEUMATICS
 
@@ -53,13 +53,13 @@ public class RobotMap {
 	public static final Triple<Integer> PANELER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 0, 1);
 	public static final Triple<Integer> SLIDER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 2, 3);
 	public static final Triple<Integer> SHOOTER_SOLENOID_ID = new Triple<Integer>(PCM_B_ID, 0, 1);
-	public static final Triple<Integer> FRONT_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 6, 7);
-	public static final Triple<Integer> BACK_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 4, 5);
+	public static final Triple<Integer> FRONT_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 4, 5);
+	public static final Triple<Integer> BACK_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 6, 7);
 
 	// SPEEDS
 
 	public static final double SHOOTING_SPEED = 0.5;
-	public static final double INTAKE_SPEED = 0.3;
+	public static final double INTAKE_SPEED = 0.50;
 	public static final double ARM_RAISE_SPEED = 0.4;
 	public static final double ARM_LOWER_SPEED = 0.4;
 	public static final double ARM_HOLD_SPEED = 0.2;
@@ -75,15 +75,17 @@ public class RobotMap {
 
 	// MEASUREMENTS
 
-	public static final double LOW_ROCKET_ANGLE = 21;
-	public static final double MID_ROCKET_ANGLE = 45;
-	public static final double HIGH_ROCKET_ANGLE = 55;
+	public static final double ARM_DROP_ANGLE = 205;
+	public static final double ARM_PARALLEL_ANGLE = 290;
+
+	public static final double LOW_ROCKET_ANGLE = 21 + ARM_PARALLEL_ANGLE;
+	public static final double MID_ROCKET_ANGLE = 45 + ARM_PARALLEL_ANGLE;
+	public static final double HIGH_ROCKET_ANGLE = 55 + ARM_PARALLEL_ANGLE;
 	
+	public static final double LOW_ROCKET_DIST = 12;
 	public static final double MID_ROCKET_DIST = 28;
 	public static final double HIGH_ROCKET_DIST = 48;
 
-	public static final double ARM_DROP_HEIGHT = 38;
-	 
 	// MISC
 
 	public static final int RUMBLE_INTERVAL = 20;

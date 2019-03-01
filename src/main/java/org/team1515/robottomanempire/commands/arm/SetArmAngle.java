@@ -8,7 +8,7 @@ public class SetArmAngle extends Command {
 
     private double target;
 
-    private static final double THRESHOLD = 10.0;
+    private static final double THRESHOLD = 5.0;
     private static final double TIMEOUT = 100; 
 
     public SetArmAngle(double target) {
@@ -20,6 +20,7 @@ public class SetArmAngle extends Command {
     @Override
     protected void execute() {
         Robot.arm.setAngle(target);
+        Robot.arm.printPID();
     }
 
     @Override

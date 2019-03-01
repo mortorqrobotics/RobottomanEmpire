@@ -1,5 +1,6 @@
 package org.team1515.robottomanempire.subsystems;
 
+import org.team1515.robottomanempire.Robot;
 import org.team1515.robottomanempire.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,8 +20,9 @@ public class Climber extends Subsystem {
     }
 
     public void lift() {
-        frontPiston.extend();
         backPiston.extend();
+        Robot.timer.delay(0.4);
+        frontPiston.extend();
     }
 
     public void unlift() {

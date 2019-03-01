@@ -16,7 +16,7 @@ public class Arm extends Subsystem {
     private static final double LOWER_SPEED = RobotMap.ARM_LOWER_SPEED;
     private static final double HOLD_SPEED = RobotMap.ARM_HOLD_SPEED;
 
-    private static final double DROP_HEIGHT = RobotMap.ARM_DROP_HEIGHT;
+    private static final double DROP_ANGLE = RobotMap.ARM_DROP_ANGLE;
 
     public Arm() {
         motors = new PIDControllableMotor(RobotMap.ARM_TALON_IDS, RobotMap.ARM_PID_CONSTANTS, new ArmEncoder(RobotMap.ARM_ENCODER_ID), 0.5);
@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
     }
 
     public void lower() {
-        if (isAtDropHeight()) {
+        if (isAtDropAngle()) {
             stop();
         } else {
             motors.setSpeed(LOWER_SPEED);
@@ -45,24 +45,28 @@ public class Arm extends Subsystem {
     }
 
     public void hold() {
-        motors.setSpeed(-HOLD_SPEED);
+        if (isAtDropAngle()) {
+            motors.setSpeed(-HOLD_SPEED);
+        } else {
+            motors.setSpeed(HOLD_SPEED);
+        }
     }
 
     public void stop() {
         motors.stop();
     }
 
-    public boolean isAtMaxHeight() {
+    public boolean isAtMaxAngle() {
         return !limitSwitch.get();
     }
 
-    public boolean isAtDropHeight() {
-        return getAngle() > DROP_HEIGHT;
+    public boolean isAtDropAngle() {
+        return getAngle() > DROP_ANGLE;
     }
 
     public void printPID() {
         motors.print("arm");
-        // SmartDashboard.putNumber("arm", motors.getEncoderMeasurement());
+        SmartDashboard.putNumber("arm", motors.getEncoderMeasurement());
     }
 
     @Override

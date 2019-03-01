@@ -61,7 +61,7 @@ public class OI {
         Controls.RETRACT_BACK_CLIMBER.whenPressed(new RetractBackClimber());
         Controls.UNLIFT.whenPressed(new Unlift());
 
-        Controls.LIFT.whenPressed(new ShootRocket());
+        Controls.SHOOT_ROCKET.whenPressed(new ShootRocket());
 
     }
 }

@@ -12,7 +12,7 @@ public class RaiseArm extends Command {
 
     @Override
     protected boolean isFinished() {
-        return Robot.arm.isAtMaxHeight();
+        return Robot.arm.isAtMaxAngle();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class RaiseArm extends Command {
 
     @Override
     protected void end() {
-        if (Robot.arm.isAtMaxHeight()) {
+        if (Robot.arm.isAtMaxAngle()) {
             Robot.arm.stop();
         } else {
             Robot.arm.hold();

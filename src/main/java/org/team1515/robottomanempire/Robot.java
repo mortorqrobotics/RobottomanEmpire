@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.team1515.robottomanempire.commands.arm.SetArmAngle;
 import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.Climber;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
@@ -97,7 +98,6 @@ public class Robot extends TimedRobot {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
-		shooter.shoot();
 	}
 
 	@Override

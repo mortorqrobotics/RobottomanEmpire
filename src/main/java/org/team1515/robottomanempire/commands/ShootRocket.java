@@ -23,20 +23,21 @@ public class ShootRocket extends CommandGroup {
     }
 
     private void low() {
+        // addParallel(new DriveBackward(RobotMap.LOW_ROCKET_DIST));;
         addSequential(new SetArmAngle(RobotMap.LOW_ROCKET_ANGLE));
-        addSequential(new Shoot());
+        // addSequential(new Shoot(3));
     }
 
     private void mid() {
-        addParallel(new DriveBackward(RobotMap.MID_ROCKET_ANGLE));
+        // addParallel(new DriveBackward(RobotMap.MID_ROCKET_DIST));
         addSequential(new SetArmAngle(RobotMap.MID_ROCKET_ANGLE));
-        addSequential(new Shoot());
+        // addSequential(new Shoot(3));
     }
 
     private void high() {
-        addParallel(new DriveBackward(RobotMap.HIGH_ROCKET_ANGLE));
+        // addParallel(new DriveBackward(RobotMap.HIGH_ROCKET_DIST));
         addSequential(new SetArmAngle(RobotMap.HIGH_ROCKET_ANGLE));
-        addSequential(new Shoot());
+        // addSequential(new Shoot(3));
     }
 
 }

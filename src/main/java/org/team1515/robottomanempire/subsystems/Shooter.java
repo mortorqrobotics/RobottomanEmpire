@@ -5,6 +5,7 @@ import org.team1515.robottomanempire.subsystems.encoders.ShooterEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shooter extends Subsystem {
 
@@ -28,17 +29,20 @@ public class Shooter extends Subsystem {
     }
 
     public void push() {
+        SmartDashboard.putBoolean("piston", true);
         piston.extend();
+
+        
     }
 
     public void shoot() {
-        topMotor.setSpeed(-SHOOTING_SPEED);
-        bottomMotor.setSpeed(SHOOTING_SPEED);
+        topMotor.setSpeed(SHOOTING_SPEED);
+        bottomMotor.setSpeed(-SHOOTING_SPEED);
     }
 
     public void intake() {
-        topMotor.setSpeed(INTAKE_SPEED);
-        bottomMotor.setSpeed(-INTAKE_SPEED);
+        topMotor.setSpeed(-INTAKE_SPEED);
+        bottomMotor.setSpeed(INTAKE_SPEED);
     }
 
     public void stop() {
