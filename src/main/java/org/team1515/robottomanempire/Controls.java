@@ -24,15 +24,18 @@ public class Controls {
 	public static final JoystickButton LOWER_ARM = new JoystickButton(Robot.manipStick, 4);
 
 	public static final JoystickButton SHOOT = new JoystickButton(Robot.driveStick, 2);
+	public static final JoystickButton SHOOT_FAST = new JoystickButton(Robot.driveStick, 4);
 	public static final JoystickButton INTAKE = new JoystickButton(Robot.driveStick, 3);
 
 	public static final JoystickButton SHOOT_ROCKET = new JoystickButton(Robot.manipStick, 2);
 	public static final int SHOOT_ROCKET_AXIS = 3;
 
-	public static final JoystickButton LIFT = new JoystickButton(Robot.manipStick, 11);
-	public static final JoystickButton DRIVE_CLIMBER = new JoystickButton(Robot.manipStick, 9);
-	public static final JoystickButton RETRACT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 12);
+	// public static final JoystickButton LIFT = new JoystickButton(Robot.manipStick, 11);
+	// public static final JoystickButton DRIVE_CLIMBER = new JoystickButton(Robot.manipStick, 9);
+	public static final JoystickButton LIFT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 9);
+	public static final JoystickButton LIFT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 11);
 	public static final JoystickButton RETRACT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 10);
-	public static final JoystickButton UNLIFT = new JoystickButton(Robot.manipStick, 7);
+	public static final JoystickButton RETRACT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 12);
+	// public static final JoystickButton UNLIFT = new JoystickButton(Robot.manipStick, 7);
 
 }

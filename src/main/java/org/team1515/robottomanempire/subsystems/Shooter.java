@@ -16,6 +16,7 @@ public class Shooter extends Subsystem {
     private DigitalInput limitSwitch;
 
     private static final double SHOOTING_SPEED = RobotMap.SHOOTING_SPEED;
+    private static final double FAST_SHOOTING_SPEED = RobotMap.FAST_SHOOTING_SPEED;
     private static final double INTAKE_SPEED = RobotMap.INTAKE_SPEED;
 
     public Shooter() {
@@ -40,6 +41,11 @@ public class Shooter extends Subsystem {
         bottomMotor.setSpeed(-SHOOTING_SPEED);
     }
 
+    public void shootFast() {
+        topMotor.setSpeed(FAST_SHOOTING_SPEED);
+        bottomMotor.setSpeed(-FAST_SHOOTING_SPEED);
+    }
+
     public void intake() {
         topMotor.setSpeed(-INTAKE_SPEED);
         bottomMotor.setSpeed(INTAKE_SPEED);
@@ -59,7 +65,6 @@ public class Shooter extends Subsystem {
     public boolean isBallIn()  {
         return !limitSwitch.get();
     }
-        
 
     @Override
     protected void initDefaultCommand() {

@@ -7,9 +7,22 @@
 
 package org.team1515.robottomanempire;
 
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+
+import org.opencv.core.Core;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.*;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -17,6 +30,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team1515.robottomanempire.commands.arm.SetArmAngle;
+import org.team1515.robottomanempire.commands.climber.LiftFrontClimber;
+import org.team1515.robottomanempire.commands.climber.Unlift;
 import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.Climber;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
@@ -38,6 +53,8 @@ public class Robot extends TimedRobot {
 	public static Arm arm;
 	public static Climber climber;
 
+	public static PowerDistributionPanel pdp;
+
 	public static Joystick driveStick;
 	public static Joystick throttleStick;
 	public static Joystick manipStick;
@@ -56,9 +73,14 @@ public class Robot extends TimedRobot {
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 
-		UsbCamera cam0 = CameraServer.getInstance().startAutomaticCapture();
+		// pdp = new PowerDistributionPanel(RobotMap.PDP_ID);
+
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+
 		oi = new OI();
 		timer = new Timer();
+
+
 	}
 
 	@Override
@@ -85,6 +107,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		timer.start();
+		new Unlift().start();
 	}
 
 	@Override
@@ -98,6 +121,7 @@ public class Robot extends TimedRobot {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
+		// SmartDashboard.putNumber("pdp", pdp.getCurrent(channel));
 	}
 
 	@Override

@@ -45,6 +45,8 @@ public class RobotMap {
 	public static final int ARM_LIMIT_SWITCH_ID = 0;
 	public static final int SHOOTER_LIMIT_SWITCH_ID = 1;
 
+	public static final int PDP_ID = 10;
+
 	// PNEUMATICS
 
 	public static final int PCM_A_ID = 11;
@@ -53,16 +55,17 @@ public class RobotMap {
 	public static final Triple<Integer> PANELER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 0, 1);
 	public static final Triple<Integer> SLIDER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 2, 3);
 	public static final Triple<Integer> SHOOTER_SOLENOID_ID = new Triple<Integer>(PCM_B_ID, 0, 1);
-	public static final Triple<Integer> FRONT_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 4, 5);
-	public static final Triple<Integer> BACK_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 6, 7);
+	public static final Triple<Integer> FRONT_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 7, 6);
+	public static final Triple<Integer> BACK_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 4, 5);
 
 	// SPEEDS
 
-	public static final double SHOOTING_SPEED = 0.5;
+	public static final double SHOOTING_SPEED = 0.3;
+	public static final double FAST_SHOOTING_SPEED = 0.7;
 	public static final double INTAKE_SPEED = 0.50;
 	public static final double ARM_RAISE_SPEED = 0.4;
 	public static final double ARM_LOWER_SPEED = 0.4;
-	public static final double ARM_HOLD_SPEED = 0.2;
+	public static final double ARM_HOLD_SPEED = 0.1;
 	public static final double CLIMBER_DRIVE_SPEED = -1.0;
 
 	// PID CONSTANTS
@@ -75,8 +78,9 @@ public class RobotMap {
 
 	// MEASUREMENTS
 
-	public static final double ARM_DROP_ANGLE = 205;
-	public static final double ARM_PARALLEL_ANGLE = 290;
+	public static final double ARM_MIN_ANGLE = 250;
+	public static final double ARM_PARALLEL_ANGLE = 320;
+	public static final double ARM_MAX_ANGLE = 54;
 
 	public static final double LOW_ROCKET_ANGLE = 21 + ARM_PARALLEL_ANGLE;
 	public static final double MID_ROCKET_ANGLE = 45 + ARM_PARALLEL_ANGLE;

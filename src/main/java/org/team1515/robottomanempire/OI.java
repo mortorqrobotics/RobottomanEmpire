@@ -11,6 +11,8 @@ import org.team1515.robottomanempire.commands.climber.DriveClimber;
 import org.team1515.robottomanempire.commands.paneler.GrabPanel;
 import org.team1515.robottomanempire.commands.shooter.Intake;
 import org.team1515.robottomanempire.commands.climber.Lift;
+import org.team1515.robottomanempire.commands.climber.LiftBackClimber;
+import org.team1515.robottomanempire.commands.climber.LiftFrontClimber;
 import org.team1515.robottomanempire.commands.ShootRocket;
 import org.team1515.robottomanempire.commands.arm.LowerArm;
 import org.team1515.robottomanempire.commands.arm.RaiseArm;
@@ -32,7 +34,7 @@ import org.team1515.robottomanempire.Controls;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    
+
     public OI() {
 
         Controls.RELEASE_PANEL.whenPressed(new ReleasePanel());
@@ -55,11 +57,13 @@ public class OI {
         Controls.REDUCE_SPEED_B.whenPressed(new ReduceSpeedB());
         Controls.REDUCE_SPEED_B.whenReleased(new UnReduceSpeed());
 
-        Controls.LIFT.whenPressed(new Lift());
-        Controls.DRIVE_CLIMBER.whileHeld(new DriveClimber());
+        // Controls.LIFT.whenPressed(new Lift());
+        // Controls.DRIVE_CLIMBER.whileHeld(new DriveClimber());
+        Controls.LIFT_FRONT_CLIMBER.whenPressed(new LiftFrontClimber());
+        Controls.LIFT_BACK_CLIMBER.whenPressed(new LiftBackClimber());
         Controls.RETRACT_FRONT_CLIMBER.whenPressed(new RetractFrontClimber());
         Controls.RETRACT_BACK_CLIMBER.whenPressed(new RetractBackClimber());
-        Controls.UNLIFT.whenPressed(new Unlift());
+        // Controls.UNLIFT.whenPressed(new Unlift());
 
         Controls.SHOOT_ROCKET.whenPressed(new ShootRocket());
 

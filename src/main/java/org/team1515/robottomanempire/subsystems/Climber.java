@@ -20,9 +20,8 @@ public class Climber extends Subsystem {
     }
 
     public void lift() {
-        backPiston.extend();
-        Robot.timer.delay(0.4);
-        frontPiston.extend();
+        liftFront();
+        liftBack();
     }
 
     public void unlift() {
@@ -36,6 +35,14 @@ public class Climber extends Subsystem {
 
     public void stop() {
         motors.stop();
+    }
+
+    public void liftFront() {
+        frontPiston.extend();
+    }
+
+    public void liftBack() {
+        backPiston.extend();
     }
 
     public void retractFront() {

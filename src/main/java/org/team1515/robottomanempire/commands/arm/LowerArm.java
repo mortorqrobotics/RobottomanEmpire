@@ -22,7 +22,11 @@ public class LowerArm extends Command {
 
     @Override
     protected void end() {
-        Robot.arm.stop();
+        // if (Robot.arm.isAtMinAngle()) {
+            // Robot.arm.stop();
+        // } else {
+            Robot.arm.hold();
+        // }
     }
 
 }
