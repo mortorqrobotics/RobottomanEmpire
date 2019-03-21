@@ -25,9 +25,10 @@ public class SetArmAngle extends Command {
 
     @Override
     protected boolean isFinished() {
-        double actual = Robot.arm.getAngle();
-        boolean isWithinThreshold = Math.abs(target - actual) <= THRESHOLD;
-        return isWithinThreshold || isTimedOut();
+        // double actual = Robot.arm.getAngle();
+        // boolean isWithinThreshold = Math.abs(target - actual) <= THRESHOLD;
+        // return isWithinThreshold || isTimedOut();
+        return false;
     }
 
     @Override

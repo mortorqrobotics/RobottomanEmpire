@@ -23,9 +23,8 @@ public class Shoot extends Command {
     @Override
     protected void execute() {
         Robot.shooter.shoot();
-        // Robot.shooter.push();
         Robot.timer.delay(0.25);
-        Robot.paneler.eject();
+        Robot.shooter.push();
     }
 
     @Override

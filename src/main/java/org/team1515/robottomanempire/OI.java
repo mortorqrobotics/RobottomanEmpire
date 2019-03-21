@@ -23,6 +23,7 @@ import org.team1515.robottomanempire.commands.climber.RetractBackClimber;
 import org.team1515.robottomanempire.commands.climber.RetractFrontClimber;
 import org.team1515.robottomanempire.commands.drivetrain.ReverseDrivetrain;
 import org.team1515.robottomanempire.commands.shooter.Shoot;
+import org.team1515.robottomanempire.commands.shooter.ShootFast;
 import org.team1515.robottomanempire.commands.paneler.SlidePanelerBackward;
 import org.team1515.robottomanempire.commands.paneler.SlidePanelerForward;
 import org.team1515.robottomanempire.commands.drivetrain.UnReduceSpeed;
@@ -47,6 +48,7 @@ public class OI {
         Controls.LOWER_ARM.whileHeld(new LowerArm());
 
         Controls.SHOOT.whileHeld(new Shoot());
+        Controls.SHOOT_FAST.whileHeld(new ShootFast());
         Controls.INTAKE.whileHeld(new Intake());
 
         Controls.REVERSE_DRIVETRAIN.whenPressed(new ReverseDrivetrain());

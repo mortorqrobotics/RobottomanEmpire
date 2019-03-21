@@ -1,6 +1,5 @@
 package org.team1515.robottomanempire;
 
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Controls {

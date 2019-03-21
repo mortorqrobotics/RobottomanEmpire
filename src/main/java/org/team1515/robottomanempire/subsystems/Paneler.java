@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Paneler extends Subsystem {
 
-    private Piston piston;
+    private DoublePiston piston;
     private Piston sliders;
 
     public Paneler() {
-        piston = new Piston(RobotMap.PANELER_SOLENOID_ID);
+        piston = new DoublePiston(RobotMap.PANELER_SOLENOID_ID);
         sliders = new Piston(RobotMap.SLIDER_SOLENOID_ID);
     }
 

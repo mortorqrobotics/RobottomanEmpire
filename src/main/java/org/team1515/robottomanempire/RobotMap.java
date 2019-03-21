@@ -35,12 +35,12 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_TICKS_PER_REV = 12;
 	public static final double SHOOTER_WHEEL_DIAMETER = 4.0;
 
-	public static final int[] ARM_TALON_IDS = {33};
+	public static final int[] ARM_TALON_IDS = {35};
 
 	public static final int ARM_ENCODER_ID = 0;
 	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
 
-	public static final int[] CLIMBER_TALON_IDS = {35};
+	public static final int[] CLIMBER_TALON_IDS = {33};
 
 	public static final int ARM_LIMIT_SWITCH_ID = 0;
 	public static final int SHOOTER_LIMIT_SWITCH_ID = 1;
@@ -49,14 +49,13 @@ public class RobotMap {
 
 	// PNEUMATICS
 
-	public static final int PCM_A_ID = 11;
-	public static final int PCM_B_ID = 12;
+	public static final int PCM_ID = 11;
  
-	public static final Triple<Integer> PANELER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 0, 1);
-	public static final Triple<Integer> SLIDER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 2, 3);
-	public static final Triple<Integer> SHOOTER_SOLENOID_ID = new Triple<Integer>(PCM_B_ID, 0, 1);
-	public static final Triple<Integer> FRONT_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 7, 6);
-	public static final Triple<Integer> BACK_CLIMBER_SOLENOID_ID = new Triple<Integer>(PCM_A_ID, 4, 5);
+	public static final Triple<Integer> PANELER_SOLENOID_ID = new Triple<Integer>(PCM_ID, 5, 6);
+	public static final Pair<Integer> SLIDER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 4);
+	public static final Pair<Integer> SHOOTER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 2);
+	public static final Pair<Integer> FRONT_CLIMBER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 1);
+	public static final Pair<Integer> BACK_CLIMBER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 0);
 
 	// SPEEDS
 

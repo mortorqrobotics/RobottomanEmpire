@@ -1,27 +1,26 @@
 package org.team1515.robottomanempire.subsystems;
 
-import org.team1515.robottomanempire.util.Triple;
+import org.team1515.robottomanempire.util.Pair;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 
 public class Piston {
 
-	private DoubleSolenoid solenoid;
+	private Solenoid solenoid;
 	private boolean isExtended;
 
-    public Piston(Triple<Integer> solenoidId) {
-        solenoid = new DoubleSolenoid(solenoidId.first, solenoidId.second, solenoidId.last);
+    public Piston(Pair<Integer> solenoidId) {
+        solenoid = new Solenoid(solenoidId.first, solenoidId.last);
         isExtended = false;
-    }
+	}
 
     public void extend() {
-		solenoid.set(Value.kForward);
+		solenoid.set(true);
 		isExtended = true;
 	}
 
 	public void retract() {
-		solenoid.set(Value.kReverse);
+		solenoid.set(false);
 		isExtended = false;
 	}
 	
