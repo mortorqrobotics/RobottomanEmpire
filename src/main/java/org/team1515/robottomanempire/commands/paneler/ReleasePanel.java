@@ -6,17 +6,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ReleasePanel extends Command {
 
-    public ReleasePanel() {
-        requires(Robot.paneler);
-    }
+	public ReleasePanel() {
+		requires(Robot.paneler);
+	}
 
-    @Override
-    public synchronized void start() {
-        Robot.paneler.eject();
-    }
+	@Override
+	public synchronized void start() {
+		Robot.paneler.eject();
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 }

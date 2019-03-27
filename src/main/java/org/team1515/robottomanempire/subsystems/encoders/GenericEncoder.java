@@ -2,8 +2,8 @@ package org.team1515.robottomanempire.subsystems.encoders;
 
 public interface GenericEncoder {
 
-    double get();
+	double get();
 
-    void reset();
+	void reset();
 
 }

@@ -6,17 +6,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class RetractBackClimber extends Command {
 
-    public RetractBackClimber() {
-        requires(Robot.climber);
-    }
+	public RetractBackClimber() {
+		requires(Robot.climber);
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
-    @Override
-    protected void execute() {
-        Robot.climber.retractBack();
-    }
+	@Override
+	protected void execute() {
+		Robot.climber.retractBack();
+	}
 }

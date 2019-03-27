@@ -6,18 +6,18 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SlidePanelerBackward extends Command {
 
-    public SlidePanelerBackward() {
-       requires(Robot.paneler);
-    }
+	public SlidePanelerBackward() {
+		requires(Robot.paneler);
+	}
 
-    @Override
-    protected void execute() {
-        Robot.paneler.slideBackward();
-    }
+	@Override
+	protected void execute() {
+		Robot.paneler.slideBackward();
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
 }

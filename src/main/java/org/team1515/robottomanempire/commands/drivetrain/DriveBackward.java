@@ -6,21 +6,21 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveBackward extends Command {
 
-    private double target;
-    private double initial;
+	private double target;
+	private double initial;
 
-    private static final double SPEED = 0.3;
+	private static final double SPEED = 0.3;
 
-    public DriveBackward(double midRocketAngle) {
-        requires(Robot.driveTrain);
-        this.target = midRocketAngle;
-        this.initial = Robot.driveTrain.getPosition();
-    }
+	public DriveBackward(double midRocketAngle) {
+		requires(Robot.driveTrain);
+		this.target = midRocketAngle;
+		this.initial = Robot.driveTrain.getPosition();
+	}
 
-    @Override
-    protected void execute() {
-        Robot.driveTrain.setSpeed(-SPEED);
-    }
+	@Override
+	protected void execute() {
+		Robot.driveTrain.setSpeed(-SPEED);
+	}
 
 	@Override
 	protected boolean isFinished() {

@@ -6,18 +6,18 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class GrabPanel extends Command {
 
-    public GrabPanel() {
-        requires(Robot.paneler);
-    }
+	public GrabPanel() {
+		requires(Robot.paneler);
+	}
 
-    @Override
-    public synchronized void start() {
-        Robot.paneler.grab();        
-    }
+	@Override
+	public synchronized void start() {
+		Robot.paneler.grab();
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
 }

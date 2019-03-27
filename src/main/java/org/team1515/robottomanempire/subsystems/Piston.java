@@ -9,12 +9,12 @@ public class Piston {
 	private Solenoid solenoid;
 	private boolean isExtended;
 
-    public Piston(Pair<Integer> solenoidId) {
-        solenoid = new Solenoid(solenoidId.first, solenoidId.last);
-        isExtended = false;
+	public Piston(Pair<Integer> solenoidId) {
+		solenoid = new Solenoid(solenoidId.first, solenoidId.last);
+		isExtended = false;
 	}
 
-    public void extend() {
+	public void extend() {
 		solenoid.set(true);
 		isExtended = true;
 	}
@@ -23,7 +23,7 @@ public class Piston {
 		solenoid.set(false);
 		isExtended = false;
 	}
-	
+
 	public void toggle() {
 		if (isExtended) {
 			retract();
@@ -32,8 +32,8 @@ public class Piston {
 		}
 	}
 
-    public boolean isOpen() {
-        return isExtended;
-    }
+	public boolean isOpen() {
+		return isExtended;
+	}
 
 }

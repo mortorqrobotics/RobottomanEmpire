@@ -8,19 +8,6 @@
 package org.team1515.robottomanempire;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-
-import org.opencv.core.Core;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.*;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -38,13 +25,6 @@ import org.team1515.robottomanempire.subsystems.DriveTrain;
 import org.team1515.robottomanempire.subsystems.Paneler;
 import org.team1515.robottomanempire.subsystems.Shooter;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.properties file in the
- * project.
- */
 public class Robot extends TimedRobot {
 
 	public static DriveTrain driveTrain;
@@ -73,14 +53,10 @@ public class Robot extends TimedRobot {
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 
-		// pdp = new PowerDistributionPanel(RobotMap.PDP_ID);
-
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
 		oi = new OI();
 		timer = new Timer();
-
-
 	}
 
 	@Override
@@ -121,10 +97,11 @@ public class Robot extends TimedRobot {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
-		// SmartDashboard.putNumber("pdp", pdp.getCurrent(channel));
 	}
 
 	@Override
 	public void testPeriodic() {
+
 	}
+
 }
