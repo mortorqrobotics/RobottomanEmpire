@@ -34,4 +34,6 @@ public class Controls {
 	public static final JoystickButton RETRACT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 10);
 	public static final JoystickButton RETRACT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 12);
 
+	public static final JoystickButton DRIVE_TO_VISION_TARGET = new JoystickButton(Robot.driveStick, -1); // TODO: find button
+
 }

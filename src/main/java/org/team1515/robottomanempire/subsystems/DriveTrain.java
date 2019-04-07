@@ -1,7 +1,6 @@
 package org.team1515.robottomanempire.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
@@ -19,7 +18,9 @@ public class DriveTrain extends Subsystem {
 	private static final double DEADBAND_FORWARD = 0.15;
 	private static final double DEADBAND_TWIST = 0.05;
 
-	private int direction = -1;
+	private static final int DEFAULT_DIRECTION = RobotMap.DRIVETRAIN_DIRECTION;
+
+	private int direction = DEFAULT_DIRECTION;
 
 	private boolean isReducedA = false;
 	private boolean isReducedB = false;
@@ -34,16 +35,6 @@ public class DriveTrain extends Subsystem {
 		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_PID_CONSTANTS, RobotMap.RIGHT_DRIVE_ENCODER_ID);
 	}
 
-	public void setSpeed(double speed) {
-		leftGearbox.setSpeed(speed);
-		rightGearbox.setSpeed(-speed);
-	}
-
-	public void setSpeedPID(double speed) {
-		leftGearbox.setSpeedPID(speed);
-		rightGearbox.setSpeedPID(-speed);
-	}
-
 	public void setSpeeds(double leftSpeed, double rightSpeed) {
 		leftGearbox.setSpeed(leftSpeed);
 		rightGearbox.setSpeed(-rightSpeed);
@@ -55,7 +46,12 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void stop() {
-		setSpeed(0);
+		leftGearbox.stop();
+		rightGearbox.stop();
+	}
+
+	public void setDefaultDirection() {
+		direction = DEFAULT_DIRECTION;
 	}
 
 	public void reverse() {
@@ -75,13 +71,7 @@ public class DriveTrain extends Subsystem {
 		isReducedB = false;
 	}
 
-	public void drive() {
-		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
-		double twist = -Robot.driveStick.getRawAxis(Controls.X_AXIS);
-
-		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
-		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
-
+	public void drive(double forward, double twist) {
 		twist *= direction;
 
 		if (isReducedA) {
@@ -118,6 +108,16 @@ public class DriveTrain extends Subsystem {
 		} else {
 			setSpeeds(left, right);
 		}
+	}
+
+	public void joystickDrive() {
+		double forward = Robot.driveStick.getRawAxis(Controls.Y_AXIS);
+		double twist = -Robot.driveStick.getRawAxis(Controls.X_AXIS);
+
+		forward = Math.abs(forward) > DEADBAND_FORWARD ? forward : 0;
+		twist = Math.abs(twist) > DEADBAND_TWIST ? twist : 0;
+
+		drive(forward, twist);
 	}
 
 	public void togglePID() {

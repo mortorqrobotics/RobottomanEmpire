@@ -7,6 +7,7 @@
 
 package org.team1515.robottomanempire;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -16,14 +17,13 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.team1515.robottomanempire.commands.arm.SetArmAngle;
-import org.team1515.robottomanempire.commands.climber.LiftFrontClimber;
 import org.team1515.robottomanempire.commands.climber.Unlift;
 import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.Climber;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
 import org.team1515.robottomanempire.subsystems.Paneler;
 import org.team1515.robottomanempire.subsystems.Shooter;
+import org.team1515.robottomanempire.util.Limelight;
 
 public class Robot extends TimedRobot {
 
@@ -33,11 +33,12 @@ public class Robot extends TimedRobot {
 	public static Arm arm;
 	public static Climber climber;
 
-	public static PowerDistributionPanel pdp;
-
 	public static Joystick driveStick;
 	public static Joystick throttleStick;
 	public static Joystick manipStick;
+
+	public static UsbCamera camera;
+	public static Limelight limelight;
 
 	public static OI oi;
 	public static Timer timer;
@@ -53,7 +54,8 @@ public class Robot extends TimedRobot {
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera = CameraServer.getInstance().startAutomaticCapture();
+		limelight = new Limelight();
 
 		oi = new OI();
 		timer = new Timer();
@@ -89,12 +91,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		double timeInterval = timer.get() % RobotMap.RUMBLE_INTERVAL;
-		if (timeInterval > 0 && timeInterval < 1) {
-			driveStick.setRumble(RumbleType.kRightRumble, 1);
-			driveStick.setRumble(RumbleType.kLeftRumble, 1);
+		// double timeInterval = timer.get() % RobotMap.RUMBLE_INTERVAL;
+		// if (timeInterval > 0 && timeInterval < 1) {
+		// 	driveStick.setRumble(RumbleType.kRightRumble, 1);
+		// 	driveStick.setRumble(RumbleType.kLeftRumble, 1);
+		// } else {
+		// 	driveStick.setRumble(RumbleType.kRightRumble, 0);
+		// 	driveStick.setRumble(RumbleType.kLeftRumble, 0);
+		// }
+		if (limelight.isTargetDetected()) {
+			driveStick.setRumble(RumbleType.kLeftRumble, RobotMap.SOFT_RUMBLE);
 		} else {
-			driveStick.setRumble(RumbleType.kRightRumble, 0);
 			driveStick.setRumble(RumbleType.kLeftRumble, 0);
 		}
 	}

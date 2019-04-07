@@ -11,7 +11,7 @@ public class GrabPanel extends Command {
 	}
 
 	@Override
-	public synchronized void start() {
+	protected void initialize() {
 		Robot.paneler.grab();
 	}
 

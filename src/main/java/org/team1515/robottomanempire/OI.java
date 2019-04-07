@@ -7,12 +7,11 @@
 
 package org.team1515.robottomanempire;
 
-import org.team1515.robottomanempire.commands.climber.DriveClimber;
 import org.team1515.robottomanempire.commands.paneler.GrabPanel;
 import org.team1515.robottomanempire.commands.shooter.Intake;
-import org.team1515.robottomanempire.commands.climber.Lift;
 import org.team1515.robottomanempire.commands.climber.LiftBackClimber;
 import org.team1515.robottomanempire.commands.climber.LiftFrontClimber;
+import org.team1515.robottomanempire.commands.DriveToVisionTarget;
 import org.team1515.robottomanempire.commands.ShootRocket;
 import org.team1515.robottomanempire.commands.arm.LowerArm;
 import org.team1515.robottomanempire.commands.arm.RaiseArm;
@@ -27,7 +26,6 @@ import org.team1515.robottomanempire.commands.shooter.ShootFast;
 import org.team1515.robottomanempire.commands.paneler.SlidePanelerBackward;
 import org.team1515.robottomanempire.commands.paneler.SlidePanelerForward;
 import org.team1515.robottomanempire.commands.drivetrain.UnReduceSpeed;
-import org.team1515.robottomanempire.commands.climber.Unlift;
 import org.team1515.robottomanempire.Controls;
 
 public class OI {
@@ -61,6 +59,8 @@ public class OI {
 		Controls.RETRACT_BACK_CLIMBER.whenPressed(new RetractBackClimber());
 
 		Controls.SHOOT_ROCKET.whenPressed(new ShootRocket());
+
+		Controls.DRIVE_TO_VISION_TARGET.whenPressed(new DriveToVisionTarget());
 
 	}
 }

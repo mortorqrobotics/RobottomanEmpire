@@ -11,8 +11,8 @@ public class ReleasePanel extends Command {
 	}
 
 	@Override
-	public synchronized void start() {
-		Robot.paneler.eject();
+	protected void initialize() {
+		Robot.paneler.release();
 	}
 
 	@Override

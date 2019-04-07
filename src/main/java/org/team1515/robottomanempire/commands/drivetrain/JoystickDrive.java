@@ -12,7 +12,7 @@ public class JoystickDrive extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.driveTrain.drive();
+		Robot.driveTrain.joystickDrive();
 	}
 
 	@Override

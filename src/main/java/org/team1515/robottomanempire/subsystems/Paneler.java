@@ -15,7 +15,7 @@ public class Paneler extends Subsystem {
 		sliders = new Piston(RobotMap.SLIDER_SOLENOID_ID);
 	}
 
-	public void eject() {
+	public void release() {
 		piston.retract();
 	}
 
