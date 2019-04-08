@@ -110,8 +110,8 @@ public class DriveTrain extends Subsystem {
 			right = temp;
 		}
 
-		left *= direction;
-		right *= direction;
+		left *= direction * RobotMap.DRIVE_LIMIT;
+		right *= direction * RobotMap.DRIVE_LIMIT;
 		
 		if (isPID) {
 			setSpeedsPID(left, right);

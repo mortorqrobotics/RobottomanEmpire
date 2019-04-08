@@ -31,9 +31,9 @@ public class Controls {
 
 	// public static final JoystickButton LIFT = new JoystickButton(Robot.manipStick, 11);
 	// public static final JoystickButton DRIVE_CLIMBER = new JoystickButton(Robot.manipStick, 9);
-	public static final JoystickButton LIFT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 9);
+	public static final JoystickButton LIFT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 7);
 	public static final JoystickButton LIFT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 11);
-	public static final JoystickButton RETRACT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 10);
+	public static final JoystickButton RETRACT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 8);
 	public static final JoystickButton RETRACT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 12);
 	// public static final JoystickButton UNLIFT = new JoystickButton(Robot.manipStick, 7);
 

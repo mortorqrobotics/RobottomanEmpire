@@ -35,15 +35,15 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_TICKS_PER_REV = 12;
 	public static final double SHOOTER_WHEEL_DIAMETER = 4.0;
 
-	public static final int[] ARM_TALON_IDS = {35};
+	public static final int[] ARM_TALON_IDS = {33};
 
 	public static final int ARM_ENCODER_ID = 0;
 	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
 
-	public static final int[] CLIMBER_TALON_IDS = {33};
+	public static final int[] CLIMBER_TALON_IDS = {35};
 
-	public static final int ARM_LIMIT_SWITCH_ID = 0;
-	public static final int SHOOTER_LIMIT_SWITCH_ID = 1;
+	public static final int ARM_LIMIT_SWITCH_ID = 1;
+	public static final int SHOOTER_LIMIT_SWITCH_ID = 0;
 
 	public static final int PDP_ID = 10;
 
@@ -59,13 +59,15 @@ public class RobotMap {
 
 	// SPEEDS
 
-	public static final double SHOOTING_SPEED = 0.3;
+	public static final double SHOOTING_SPEED = 0.31;
 	public static final double FAST_SHOOTING_SPEED = 0.7;
 	public static final double INTAKE_SPEED = 0.50;
 	public static final double ARM_RAISE_SPEED = 0.4;
 	public static final double ARM_LOWER_SPEED = 0.4;
 	public static final double ARM_HOLD_SPEED = 0.1;
 	public static final double CLIMBER_DRIVE_SPEED = -1.0;
+
+	public static final double DRIVE_LIMIT = 0.8;
 
 	// PID CONSTANTS
 
