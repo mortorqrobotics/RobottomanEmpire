@@ -5,22 +5,26 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight {
 
-    private NetworkTable table;
+	private NetworkTable table;
 
-    public Limelight() {
-        this.table = NetworkTableInstance.getDefault().getTable("limelight");
-    }
+	public Limelight() {
+		this.table = NetworkTableInstance.getDefault().getTable("limelight");
+	}
 
-    public boolean isTargetDetected() {
-        return table.getEntry("tv").getDouble(0) > 0;
-    }
+	public setLedMode(int mode) { //Requires indents
+		return table.getEntry("ledMode").setNumber(mode);
+	}
 
-    public double getHorizontalOffset() {
-        return table.getEntry("tx").getDouble(0);
-    }
+	public boolean isTargetDetected() {
+		return table.getEntry("tv").getDouble(0) > 0;
+	}
 
-    public double getArea() {
-        return table.getEntry("ta").getDouble(0);
-    }
+	public double getHorizontalOffset() {
+		return table.getEntry("tx").getDouble(0);
+	}
+
+	public double getArea() {
+		return table.getEntry("ta").getDouble(0);
+	}
 
 }
