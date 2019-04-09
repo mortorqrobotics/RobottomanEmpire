@@ -11,6 +11,9 @@ public class Limelight {
         this.table = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
+    public setLedMode(int mode) { //Requires indents
+        return table.getEntry("ledMode").setNumber(mode)
+    }
     public boolean isTargetDetected() {
         return table.getEntry("tv").getDouble(0) > 0;
     }

@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-
+		limelight.setLedMode(3)
 	}
 
 	@Override
@@ -84,6 +84,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		limelight.setLedMode(3)
 		timer.start();
 		new Unlift().start();
 	}
