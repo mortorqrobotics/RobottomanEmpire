@@ -10,12 +10,12 @@ public class DoublePiston {
 	private DoubleSolenoid solenoid;
 	private boolean isExtended;
 
-    public DoublePiston(Triple<Integer> sliderSolenoidId) {
-        solenoid = new DoubleSolenoid(sliderSolenoidId.first, sliderSolenoidId.second, sliderSolenoidId.last);
-        isExtended = false;
+	public DoublePiston(Triple<Integer> sliderSolenoidId) {
+		solenoid = new DoubleSolenoid(sliderSolenoidId.first, sliderSolenoidId.second, sliderSolenoidId.last);
+		isExtended = false;
 	}
 
-    public void extend() {
+	public void extend() {
 		solenoid.set(Value.kForward);
 		isExtended = true;
 	}
@@ -24,7 +24,7 @@ public class DoublePiston {
 		solenoid.set(Value.kReverse);
 		isExtended = false;
 	}
-	
+
 	public void toggle() {
 		if (isExtended) {
 			retract();
@@ -33,8 +33,8 @@ public class DoublePiston {
 		}
 	}
 
-    public boolean isOpen() {
-        return isExtended;
-    }
+	public boolean isOpen() {
+		return isExtended;
+	}
 
 }

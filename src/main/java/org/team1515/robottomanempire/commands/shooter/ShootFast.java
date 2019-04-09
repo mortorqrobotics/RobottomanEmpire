@@ -5,32 +5,32 @@ import org.team1515.robottomanempire.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShootFast extends Command {
-    
-    public ShootFast() {
-        requires(Robot.shooter);
-    }
 
-    public ShootFast(double timeout) {
-        requires(Robot.shooter);
-        setTimeout(timeout);
-    }
+	public ShootFast() {
+		requires(Robot.shooter);
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return isTimedOut();
-    }
+	public ShootFast(double timeout) {
+		requires(Robot.shooter);
+		setTimeout(timeout);
+	}
 
-    @Override
-    protected void execute() {
-        Robot.shooter.shootFast();
-        Robot.timer.delay(0.25);
-        Robot.shooter.push();
-    }
+	@Override
+	protected boolean isFinished() {
+		return isTimedOut();
+	}
 
-    @Override
-    protected void end() {
-        Robot.shooter.stop();
-        Robot.paneler.grab();
-    }
+	@Override
+	protected void execute() {
+		Robot.shooter.shootFast();
+		Robot.timer.delay(0.25);
+		Robot.shooter.push();
+	}
+
+	@Override
+	protected void end() {
+		Robot.shooter.stop();
+		Robot.paneler.grab();
+	}
 
 }

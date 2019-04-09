@@ -4,9 +4,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class MotorModule {
-	
+
 	private TalonSRX[] talons;
-	
+
 	public MotorModule(int[] talonIds) {
 		talons = new TalonSRX[talonIds.length];
 		for (int i = 0; i < talonIds.length; i++) {
@@ -18,7 +18,7 @@ public class MotorModule {
 		for (TalonSRX talon : talons) {
 			if (talon.getDeviceID() == id) {
 				return talon;
-			}			
+			}
 		}
 		return null;
 	}

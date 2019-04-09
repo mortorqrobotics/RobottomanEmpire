@@ -6,18 +6,18 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickDrive extends Command {
 
-    public JoystickDrive() {
-        requires(Robot.driveTrain);
-    }
+	public JoystickDrive() {
+		requires(Robot.driveTrain);
+	}
 
-    @Override
-    protected void execute() {
-        Robot.driveTrain.drive();    
-    }
+	@Override
+	protected void execute() {
+		Robot.driveTrain.joystickDrive();
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return false;
-    }
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
 
 }

@@ -6,17 +6,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class LiftFrontClimber extends Command {
 
-    public LiftFrontClimber() {
-        requires(Robot.climber);
-    }
+	public LiftFrontClimber() {
+		requires(Robot.climber);
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
-    @Override
-    protected void execute() {
-        Robot.climber.liftFront();
-    }
+	@Override
+	protected void execute() {
+		Robot.climber.liftFront();
+	}
 }

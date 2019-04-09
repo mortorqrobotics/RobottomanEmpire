@@ -7,44 +7,23 @@
 
 package org.team1515.robottomanempire;
 
-import edu.wpi.first.cameraserver.CameraServer;
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-
-import org.opencv.core.Core;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.*;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.team1515.robottomanempire.commands.arm.SetArmAngle;
-import org.team1515.robottomanempire.commands.climber.LiftFrontClimber;
 import org.team1515.robottomanempire.commands.climber.Unlift;
 import org.team1515.robottomanempire.subsystems.Arm;
 import org.team1515.robottomanempire.subsystems.Climber;
 import org.team1515.robottomanempire.subsystems.DriveTrain;
 import org.team1515.robottomanempire.subsystems.Paneler;
 import org.team1515.robottomanempire.subsystems.Shooter;
+import org.team1515.robottomanempire.util.Limelight;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.properties file in the
- * project.
- */
 public class Robot extends TimedRobot {
 
 	public static DriveTrain driveTrain;
@@ -53,11 +32,12 @@ public class Robot extends TimedRobot {
 	public static Arm arm;
 	public static Climber climber;
 
-	public static PowerDistributionPanel pdp;
-
 	public static Joystick driveStick;
 	public static Joystick throttleStick;
 	public static Joystick manipStick;
+
+	public static UsbCamera camera;
+	public static Limelight limelight;
 
 	public static OI oi;
 	public static Timer timer;
@@ -73,14 +53,11 @@ public class Robot extends TimedRobot {
 		driveStick = new Joystick(Controls.DRIVE_STICK);
 		manipStick = new Joystick(Controls.MANIPULATOR_STICK);
 
-		// pdp = new PowerDistributionPanel(RobotMap.PDP_ID);
-
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera = CameraServer.getInstance().startAutomaticCapture();
+		limelight = new Limelight();
 
 		oi = new OI();
 		timer = new Timer();
-
-
 	}
 
 	@Override
@@ -91,7 +68,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("abs encoder", arm.getAngle());
 	}
 
 	@Override
@@ -113,18 +89,26 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		double timeInterval = timer.get() % RobotMap.RUMBLE_INTERVAL;
-		if (timeInterval > 0 && timeInterval < 1) {
-			driveStick.setRumble(RumbleType.kRightRumble, 1);
-			driveStick.setRumble(RumbleType.kLeftRumble, 1);
+		// double timeInterval = timer.get() % RobotMap.RUMBLE_INTERVAL;
+		// if (timeInterval > 0 && timeInterval < 1) {
+		// 	driveStick.setRumble(RumbleType.kRightRumble, 1);
+		// 	driveStick.setRumble(RumbleType.kLeftRumble, 1);
+		// } else {
+		// 	driveStick.setRumble(RumbleType.kRightRumble, 0);
+		// 	driveStick.setRumble(RumbleType.kLeftRumble, 0);
+		// }
+		if (limelight.isTargetDetected()) {
+			driveStick.setRumble(RumbleType.kRightRumble, RobotMap.SOFT_RUMBLE);
+			SmartDashboard.putBoolean("isDetected", true);
 		} else {
 			driveStick.setRumble(RumbleType.kRightRumble, 0);
-			driveStick.setRumble(RumbleType.kLeftRumble, 0);
+			SmartDashboard.putBoolean("isDetected", false);
 		}
-		// SmartDashboard.putNumber("pdp", pdp.getCurrent(channel));
 	}
 
 	@Override
 	public void testPeriodic() {
+
 	}
+
 }

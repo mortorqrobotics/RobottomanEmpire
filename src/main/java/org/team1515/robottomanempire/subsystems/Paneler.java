@@ -7,41 +7,41 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Paneler extends Subsystem {
 
-    private DoublePiston piston;
-    private Piston sliders;
+	private DoublePiston piston;
+	private Piston sliders;
 
-    public Paneler() {
-        piston = new DoublePiston(RobotMap.PANELER_SOLENOID_ID);
-        sliders = new Piston(RobotMap.SLIDER_SOLENOID_ID);
-    }
+	public Paneler() {
+		piston = new DoublePiston(RobotMap.PANELER_SOLENOID_ID);
+		sliders = new Piston(RobotMap.SLIDER_SOLENOID_ID);
+	}
 
-    public void eject() {
-       piston.retract();
-    }
+	public void release() {
+		piston.retract();
+	}
 
-    public void grab() {
-        piston.extend();
-    }
+	public void grab() {
+		piston.extend();
+	}
 
-    public void slideForward() {
-        sliders.extend();
-    }
+	public void slideForward() {
+		sliders.extend();
+	}
 
-    public void slideBackward() {
-        sliders.retract();
-    }
+	public void slideBackward() {
+		sliders.retract();
+	}
 
-    public void toggleSliders() {
-        sliders.toggle();
-    }
+	public void toggleSliders() {
+		sliders.toggle();
+	}
 
-    public void toggle() {
-        piston.toggle();
-    }
+	public void toggle() {
+		piston.toggle();
+	}
 
-    @Override
-    protected void initDefaultCommand() {
+	@Override
+	protected void initDefaultCommand() {
 
-    }
+	}
 
 }

@@ -18,7 +18,7 @@ public class RobotMap {
 	public static final int[] RIGHT_DRIVE_TALON_IDS = {36, 38, 40};
 
 	public static final int LEFT_DRIVE_ENCODER_ID = 41;
-	public static final int RIGHT_DRIVE_ENCODER_ID = 40; 
+	public static final int RIGHT_DRIVE_ENCODER_ID = 40;
 
 	public static final int DRIVE_ENCODER_TICKS_PER_REV = 1024;
 	public static final double DRIVE_WHEEL_DIAMETER = 6.0;
@@ -50,7 +50,7 @@ public class RobotMap {
 	// PNEUMATICS
 
 	public static final int PCM_ID = 11;
- 
+
 	public static final Triple<Integer> PANELER_SOLENOID_ID = new Triple<Integer>(PCM_ID, 5, 6);
 	public static final Pair<Integer> SLIDER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 4);
 	public static final Pair<Integer> SHOOTER_SOLENOID_ID = new Pair<Integer>(PCM_ID, 2);
@@ -67,14 +67,12 @@ public class RobotMap {
 	public static final double ARM_HOLD_SPEED = 0.1;
 	public static final double CLIMBER_DRIVE_SPEED = -1.0;
 
-	public static final double DRIVE_LIMIT = 0.8;
-
 	// PID CONSTANTS
 
 	public static final Triple<Double> TOP_SHOOTER_PID_CONSTANTS = new Triple<Double>(1.0, 0.1, 0.0);
 	public static final Triple<Double> BOTTOM_SHOOTER_PID_CONSTANTS = new Triple<Double>(1.0, 0.1, 0.0);
 	public static final Triple<Double> ARM_PID_CONSTANTS = new Triple<Double>(0.005, 0.00005, 0.0);
-    public static final Triple<Double> LEFT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
+	public static final Triple<Double> LEFT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
 	public static final Triple<Double> RIGHT_DRIVE_PID_CONSTANTS = new Triple<Double>(1.0, 0.0, 0.0);
 
 	// MEASUREMENTS
@@ -86,13 +84,16 @@ public class RobotMap {
 	public static final double LOW_ROCKET_ANGLE = 21 + ARM_PARALLEL_ANGLE;
 	public static final double MID_ROCKET_ANGLE = 45 + ARM_PARALLEL_ANGLE;
 	public static final double HIGH_ROCKET_ANGLE = 55 + ARM_PARALLEL_ANGLE;
-	
+
 	public static final double LOW_ROCKET_DIST = 12;
 	public static final double MID_ROCKET_DIST = 28;
 	public static final double HIGH_ROCKET_DIST = 48;
 
 	// MISC
 
+	public static final int DRIVETRAIN_DIRECTION = -1;
+
 	public static final int RUMBLE_INTERVAL = 20;
+	public static final double SOFT_RUMBLE = 0.1;
 
 }

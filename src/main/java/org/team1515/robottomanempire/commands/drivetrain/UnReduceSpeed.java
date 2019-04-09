@@ -6,17 +6,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class UnReduceSpeed extends Command {
 
-    public UnReduceSpeed() {
-        requires(Robot.driveTrain);
-    }
+	public UnReduceSpeed() {
+		requires(Robot.driveTrain);
+	}
 
-    @Override
-    protected void execute() {
-        Robot.driveTrain.unReduceSpeed();
-    }
+	@Override
+	protected void execute() {
+		Robot.driveTrain.unReduceSpeed();
+	}
 
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 }
