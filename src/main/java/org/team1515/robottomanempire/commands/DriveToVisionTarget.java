@@ -1,12 +1,10 @@
 package org.team1515.robottomanempire.commands;
 
-import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
-import org.team1515.robottomanempire.RobotMap;
+import org.team1515.robottomanempire.util.PIDController;
+import org.team1515.robottomanempire.util.Triple;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveToVisionTarget extends Command {
 
@@ -17,11 +15,17 @@ public class DriveToVisionTarget extends Command {
     private double forward;
     private double twist;
 
-    private static final double TARGET_AREA = 20;
-    private static final double THRESHOLD = 2;
+    private int counter = 0;
+    private static final int COUNTER = 5;
 
-    private static final double FORWARD = 0.3;
-    private static final double TWIST = 0.3;
+    private static final double TARGET_AREA = 3.5;
+    private static final double THRESHOLD_FORWARD = 0.1;
+    private static final double THRESHOLD_TWIST = 1;
+
+    private static final double FORWARD = 1;
+    private static final Triple<Double> TWIST = new Triple<Double>(0.05, 0.0, 0.1);;
+
+    private PIDController twistPIDController;
 
     public DriveToVisionTarget() {
         requires(Robot.driveTrain);
@@ -29,9 +33,9 @@ public class DriveToVisionTarget extends Command {
 
     @Override
     protected void initialize() {
-        SmartDashboard.putString("a", "a");
-        Robot.driveStick.setRumble(RumbleType.kRightRumble, RobotMap.SOFT_RUMBLE);
         Robot.driveTrain.setDefaultDirection();
+        Robot.paneler.slideBackward();
+        twistPIDController = new PIDController(TWIST);
     }
 
     @Override
@@ -40,24 +44,26 @@ public class DriveToVisionTarget extends Command {
         horizontalOffset = Robot.limelight.getHorizontalOffset();
         area = Robot.limelight.getArea();
         if (isTargetDetected) {
-            forward = FORWARD * (TARGET_AREA - area);
-            twist = -TWIST * horizontalOffset;
-            // Robot.driveTrain.drive(forward, twist);
-            SmartDashboard.putNumber("twist", twist);
-            Robot.driveTrain.drive(Robot.driveStick.getRawAxis(Controls.Y_AXIS), twist);
+            forward = FORWARD * (TARGET_AREA - area) / TARGET_AREA;
+            twist = twistPIDController.getOutput(0, -horizontalOffset);
+            Robot.driveTrain.drive(-forward, -twist);
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(TARGET_AREA - area) < THRESHOLD;
+        if (Math.abs(TARGET_AREA - area) < THRESHOLD_FORWARD && horizontalOffset < THRESHOLD_TWIST) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+        return counter >= COUNTER;
     }
 
     @Override
     protected void end() {
-        SmartDashboard.putString("a", "b");
         Robot.driveTrain.stop();
-        Robot.driveStick.setRumble(RumbleType.kRightRumble, 0);
+        Robot.paneler.slideForward();
     }
 
 }

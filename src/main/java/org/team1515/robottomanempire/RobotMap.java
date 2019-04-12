@@ -91,7 +91,7 @@ public class RobotMap {
 
 	// MISC
 
-	public static final int DRIVETRAIN_DIRECTION = -1;
+	public static final int DRIVETRAIN_DIRECTION = 1; // change to neg
 
 	public static final int RUMBLE_INTERVAL = 20;
 	public static final double SOFT_RUMBLE = 0.1;

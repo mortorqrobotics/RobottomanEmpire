@@ -15,6 +15,7 @@ import org.team1515.robottomanempire.commands.DriveToVisionTarget;
 import org.team1515.robottomanempire.commands.ShootRocket;
 import org.team1515.robottomanempire.commands.arm.LowerArm;
 import org.team1515.robottomanempire.commands.arm.RaiseArm;
+import org.team1515.robottomanempire.commands.drivetrain.JoystickDrive;
 import org.team1515.robottomanempire.commands.drivetrain.ReduceSpeedA;
 import org.team1515.robottomanempire.commands.drivetrain.ReduceSpeedB;
 import org.team1515.robottomanempire.commands.paneler.ReleasePanel;
@@ -61,6 +62,7 @@ public class OI {
 		Controls.SHOOT_ROCKET.whenPressed(new ShootRocket());
 
 		Controls.DRIVE_TO_VISION_TARGET.whenPressed(new DriveToVisionTarget());
+		Controls.DRIVE_TO_VISION_TARGET.whenReleased(new JoystickDrive());
 
 	}
 }

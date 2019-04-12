@@ -27,12 +27,15 @@ public class DriveTrain extends Subsystem {
 	private static final double REDUCED_SPEED_A = 0.66;
 	private static final double REDUCED_SPEED_B = 0.33;
 	private static final double REDUCED_TURNSPEED = 0.5;
+	private static final double MAX_SPEED = 0.3;
 
 	private boolean isPID = false;
 
 	public DriveTrain() {
-		leftGearbox = new PIDControllableMotor(RobotMap.LEFT_DRIVE_TALON_IDS, RobotMap.LEFT_DRIVE_PID_CONSTANTS, RobotMap.LEFT_DRIVE_ENCODER_ID);
-		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_PID_CONSTANTS, RobotMap.RIGHT_DRIVE_ENCODER_ID);
+		leftGearbox = new PIDControllableMotor(RobotMap.LEFT_DRIVE_TALON_IDS, RobotMap.LEFT_DRIVE_PID_CONSTANTS,
+				RobotMap.LEFT_DRIVE_ENCODER_ID);
+		rightGearbox = new PIDControllableMotor(RobotMap.RIGHT_DRIVE_TALON_IDS, RobotMap.RIGHT_DRIVE_PID_CONSTANTS,
+				RobotMap.RIGHT_DRIVE_ENCODER_ID);
 	}
 
 	public void setSpeeds(double leftSpeed, double rightSpeed) {
@@ -100,14 +103,12 @@ public class DriveTrain extends Subsystem {
 			right = temp;
 		}
 
-		left *= direction * 0.1;
-		right *= direction  * 0.1;
+		left *= direction;
+		right *= direction;
 
-		if (isPID) {
-			setSpeedsPID(left, right);
-		} else {
-			setSpeeds(left, right);
-		}
+		left = Math.signum(left) * Math.min(Math.abs(left), MAX_SPEED);
+		right = Math.signum(right) * Math.min(Math.abs(right), MAX_SPEED);
+	
 	}
 
 	public void joystickDrive() {
