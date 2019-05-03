@@ -7,6 +7,8 @@ public class Controls {
 	public static final int DRIVE_STICK = 0;
 	public static final int MANIPULATOR_STICK = 1;
 
+	public static final int DRIVE_ARM_AXIS = 1;
+
 	public static final int X_AXIS = 0;
 	public static final int Y_AXIS = 1;
 
@@ -22,15 +24,13 @@ public class Controls {
 	public static final JoystickButton RAISE_ARM = new JoystickButton(Robot.manipStick, 6);
 	public static final JoystickButton LOWER_ARM = new JoystickButton(Robot.manipStick, 4);
 
-	public static final JoystickButton SHOOT = new JoystickButton(Robot.driveStick, 2);
+	public static final JoystickButton SHOOT = new JoystickButton(Robot.manipStick, 2); // cheesecake succ
 	public static final JoystickButton SHOOT_FAST = new JoystickButton(Robot.driveStick, 4);
 	public static final JoystickButton INTAKE = new JoystickButton(Robot.driveStick, 3);
 
 	public static final JoystickButton SHOOT_ROCKET = new JoystickButton(Robot.manipStick, 2);
 	public static final int SHOOT_ROCKET_AXIS = 3;
 
-	// public static final JoystickButton LIFT = new JoystickButton(Robot.manipStick, 11);
-	// public static final JoystickButton DRIVE_CLIMBER = new JoystickButton(Robot.manipStick, 9);
 	public static final JoystickButton LIFT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 7);
 	public static final JoystickButton LIFT_BACK_CLIMBER = new JoystickButton(Robot.manipStick, 11);
 	public static final JoystickButton RETRACT_FRONT_CLIMBER = new JoystickButton(Robot.manipStick, 8);

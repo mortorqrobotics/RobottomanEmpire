@@ -1,6 +1,9 @@
 package org.team1515.robottomanempire.subsystems;
 
+import org.team1515.robottomanempire.Controls;
+import org.team1515.robottomanempire.Robot;
 import org.team1515.robottomanempire.RobotMap;
+import org.team1515.robottomanempire.commands.arm.DriveArm;
 import org.team1515.robottomanempire.subsystems.encoders.ArmEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -26,15 +29,15 @@ public class Arm extends Subsystem {
 	}
 
 	public void raise() {
-		motors.setSpeed(-RAISE_SPEED);
+		// motors.setSpeed(RAISE_SPEED);
 	}
 
 	public void lower() {
-		motors.setSpeed(LOWER_SPEED);
+		// motors.setSpeed(-LOWER_SPEED);
 	}
 
 	public void setAngle(double angle) {
-		motors.setSpeedPID(angle);
+		// motors.setSpeedPID(angle);
 	}
 
 	public double getAngle() {
@@ -42,11 +45,17 @@ public class Arm extends Subsystem {
 	}
 
 	public void hold() {
-		motors.setSpeed(-HOLD_SPEED);
+		// motors.setSpeed(HOLD_SPEED);
 	}
 
 	public void stop() {
-		motors.stop();
+		// motors.stop();
+	}
+
+	// cheesecake climber arm up and down
+	public void drive() {
+		SmartDashboard.putNumber("cheesecake", 2);
+		motors.setSpeed(-Robot.manipStick.getRawAxis(Controls.DRIVE_ARM_AXIS));
 	}
 
 	public boolean isAtMaxAngle() {
@@ -64,7 +73,7 @@ public class Arm extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-
+		setDefaultCommand(new DriveArm());
 	}
 
 }

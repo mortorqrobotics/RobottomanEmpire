@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
 	private static final double REDUCED_SPEED_A = 0.66;
 	private static final double REDUCED_SPEED_B = 0.33;
 	private static final double REDUCED_TURNSPEED = 0.5;
-	private static final double MAX_SPEED = 0.3;
+	private static final double MAX_SPEED = 1;
 
 	private boolean isPID = false;
 
@@ -106,8 +106,10 @@ public class DriveTrain extends Subsystem {
 		left *= direction;
 		right *= direction;
 
-		left = Math.signum(left) * Math.min(Math.abs(left), MAX_SPEED);
-		right = Math.signum(right) * Math.min(Math.abs(right), MAX_SPEED);
+		// left = Math.signum(left) * Math.min(Math.abs(left), MAX_SPEED);
+		// right = Math.signum(right) * Math.min(Math.abs(right), MAX_SPEED);
+
+		setSpeeds(left, right);
 	
 	}
 

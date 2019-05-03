@@ -23,7 +23,7 @@ public class RobotMap {
 	public static final int DRIVE_ENCODER_TICKS_PER_REV = 1024;
 	public static final double DRIVE_WHEEL_DIAMETER = 6.0;
 
-	public static final int[] TOP_SHOOTER_TALON_IDS = {34};
+	public static final int[] TOP_SHOOTER_TALON_IDS = {34}; // cheesecake climber succ
 	public static final int[] BOTTOM_SHOOTER_TALON_IDS = {32};
 
 	public static final Pair<Integer> TOP_SHOOTER_ENCODER_ID = new Pair<Integer>(4, 5);
@@ -35,7 +35,7 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_TICKS_PER_REV = 12;
 	public static final double SHOOTER_WHEEL_DIAMETER = 4.0;
 
-	public static final int[] ARM_TALON_IDS = {33};
+	public static final int[] ARM_TALON_IDS = {33}; // cheesecake climber arm
 
 	public static final int ARM_ENCODER_ID = 0;
 	public static final Pair<Double> ARM_ENCODER_MIN_MAX = new Pair<Double>(0.01464, 4.814);
@@ -59,12 +59,12 @@ public class RobotMap {
 
 	// SPEEDS
 
-	public static final double SHOOTING_SPEED = 0.31;
-	public static final double FAST_SHOOTING_SPEED = 0.7;
+	public static final double SHOOTING_SPEED = 0.5; // cheesecake succ speed
+	public static final double FAST_SHOOTING_SPEED = 1;
 	public static final double INTAKE_SPEED = 0.50;
-	public static final double ARM_RAISE_SPEED = 0.4;
-	public static final double ARM_LOWER_SPEED = 0.4;
-	public static final double ARM_HOLD_SPEED = 0.1;
+	public static final double ARM_RAISE_SPEED = 0.5;
+	public static final double ARM_LOWER_SPEED = 0.5;
+	public static final double ARM_HOLD_SPEED = 0.04;
 	public static final double CLIMBER_DRIVE_SPEED = -1.0;
 
 	// PID CONSTANTS
@@ -91,7 +91,7 @@ public class RobotMap {
 
 	// MISC
 
-	public static final int DRIVETRAIN_DIRECTION = 1; // change to neg
+	public static final int DRIVETRAIN_DIRECTION = -1;
 
 	public static final int RUMBLE_INTERVAL = 20;
 	public static final double SOFT_RUMBLE = 0.1;

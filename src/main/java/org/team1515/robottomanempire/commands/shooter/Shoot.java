@@ -10,27 +10,23 @@ public class Shoot extends Command {
 		requires(Robot.shooter);
 	}
 
-	public Shoot(double timeout) {
-		requires(Robot.shooter);
-		setTimeout(timeout);
-	}
-
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
+	// cheesecake succ
 	@Override
 	protected void execute() {
 		Robot.shooter.shoot();
-		Robot.timer.delay(0.25);
-		Robot.shooter.push();
+		// Robot.timer.delay(0.25);
+		// Robot.shooter.push();
 	}
 
 	@Override
 	protected void end() {
 		Robot.shooter.stop();
-		Robot.paneler.grab();
+		// Robot.paneler.grab();
 	}
 
 }

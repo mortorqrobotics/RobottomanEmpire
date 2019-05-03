@@ -39,12 +39,12 @@ public class OI {
 		Controls.SLIDE_PANELER_FORWARD.whenPressed(new SlidePanelerForward());
 		Controls.SLIDE_PANELER_BACKWARD.whenPressed(new SlidePanelerBackward());
 
-		Controls.RAISE_ARM.whileHeld(new RaiseArm());
-		Controls.LOWER_ARM.whileHeld(new LowerArm());
+		// Controls.RAISE_ARM.whileHeld(new RaiseArm());
+		// Controls.LOWER_ARM.whileHeld(new LowerArm());
 
-		Controls.SHOOT.whileHeld(new Shoot());
-		Controls.SHOOT_FAST.whileHeld(new ShootFast());
-		Controls.INTAKE.whileHeld(new Intake());
+		Controls.SHOOT.whileHeld(new Shoot()); // cheesecake succ
+		// Controls.SHOOT_FAST.whileHeld(new ShootFast());
+		// Controls.INTAKE.whileHeld(new Intake());
 
 		Controls.REVERSE_DRIVETRAIN.whenPressed(new ReverseDrivetrain());
 

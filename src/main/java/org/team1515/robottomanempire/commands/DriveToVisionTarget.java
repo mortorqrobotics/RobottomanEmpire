@@ -1,5 +1,6 @@
 package org.team1515.robottomanempire.commands;
 
+import org.team1515.robottomanempire.Controls;
 import org.team1515.robottomanempire.Robot;
 import org.team1515.robottomanempire.util.PIDController;
 import org.team1515.robottomanempire.util.Triple;
@@ -18,11 +19,11 @@ public class DriveToVisionTarget extends Command {
     private int counter = 0;
     private static final int COUNTER = 5;
 
-    private static final double TARGET_AREA = 3.5;
+    private static final double TARGET_AREA = 18;
     private static final double THRESHOLD_FORWARD = 0.1;
     private static final double THRESHOLD_TWIST = 1;
 
-    private static final double FORWARD = 1;
+    private static final double FORWARD = 0.8;
     private static final Triple<Double> TWIST = new Triple<Double>(0.05, 0.0, 0.1);;
 
     private PIDController twistPIDController;
@@ -34,7 +35,7 @@ public class DriveToVisionTarget extends Command {
     @Override
     protected void initialize() {
         Robot.driveTrain.setDefaultDirection();
-        Robot.paneler.slideBackward();
+        // Robot.paneler.slideBackward();
         twistPIDController = new PIDController(TWIST);
     }
 
@@ -45,8 +46,9 @@ public class DriveToVisionTarget extends Command {
         area = Robot.limelight.getArea();
         if (isTargetDetected) {
             forward = FORWARD * (TARGET_AREA - area) / TARGET_AREA;
-            twist = twistPIDController.getOutput(0, -horizontalOffset);
-            Robot.driveTrain.drive(-forward, -twist);
+            twist = twistPIDController.getOutput(0, horizontalOffset);
+            // Robot.driveTrain.drive(Robot.driveStick.getRawAxis(Controls.Y_AXIS), twist);
+            Robot.driveTrain.drive(-forward, twist);
         }
     }
 
@@ -63,7 +65,7 @@ public class DriveToVisionTarget extends Command {
     @Override
     protected void end() {
         Robot.driveTrain.stop();
-        Robot.paneler.slideForward();
+        // Robot.paneler.slideForward();
     }
 
 }

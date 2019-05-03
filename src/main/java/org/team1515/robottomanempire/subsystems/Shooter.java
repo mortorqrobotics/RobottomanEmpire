@@ -29,28 +29,29 @@ public class Shooter extends Subsystem {
 	}
 
 	public void push() {
-		piston.extend();
+		// piston.extend();
 	}
 
+	// cheesecake succ
 	public void shoot() {
 		topMotor.setSpeed(SHOOTING_SPEED);
-		bottomMotor.setSpeed(-SHOOTING_SPEED);
+		// bottomMotor.setSpeed(-SHOOTING_SPEED);
 	}
 
 	public void shootFast() {
-		topMotor.setSpeed(FAST_SHOOTING_SPEED);
-		bottomMotor.setSpeed(-FAST_SHOOTING_SPEED);
+		// topMotor.setSpeed(FAST_SHOOTING_SPEED);
+		// bottomMotor.setSpeed(-FAST_SHOOTING_SPEED);
 	}
 
 	public void intake() {
-		topMotor.setSpeed(-INTAKE_SPEED);
-		bottomMotor.setSpeed(INTAKE_SPEED);
+		// topMotor.setSpeed(-INTAKE_SPEED);
+		// bottomMotor.setSpeed(INTAKE_SPEED);
 	}
 
 	public void stop() {
 		topMotor.stop();
-		bottomMotor.stop();
-		piston.retract();
+		// bottomMotor.stop();
+		// piston.retract();
 	}
 
 	public void printPID() {
